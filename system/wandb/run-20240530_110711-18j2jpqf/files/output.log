@@ -1,0 +1,46 @@
+Dropped clients: [4, 15, 18, 11, 12, 16]
+-------------Round number: 0-------------
+Evaluate global model
+Averaged Train Loss: 2.2691
+Averaged Test Accurancy: 0.0703
+Averaged Test AUC: 0.5693
+Std Test Accurancy: 0.0527
+Std Test AUC: 0.0483
+clients: 14
+Training client: 1  Time Cost:  3.355531692504883
+Training client: 2  Time Cost:  3.40665602684021
+Training client: 3  Time Cost:  3.873065710067749
+Training client: 4  Time Cost:  4.949329376220703
+Training client: 5  Time Cost:  3.9693210124969482
+Training client: 6  Time Cost:  1.4694056510925293
+Training client: 7  Time Cost:  67.51083207130432
+Training client: 8  Time Cost:  7.83646559715271
+Training client: 9  Time Cost:  7.610237121582031
+Training client: 10  Time Cost:  9.838808059692383
+Training client: 11  Time Cost:  13.474942684173584
+Training client: 12  Time Cost:  4.390830039978027
+Training client: 13  Time Cost:  14.832544088363647
+Training client: 14  Time Cost:  5.251082897186279
+Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio: 0.3
+------------------------- time cost ------------------------- 203.5815031528473
+Dropped clients: [6, 7, 9, 8, 13, 3, 2, 1, 18, 10, 12, 17]
+-------------Round number: 1-------------
+Evaluate global model
+Averaged Train Loss: 2.0375
+Averaged Test Accurancy: 0.2312
+Averaged Test AUC: 0.7470
+Std Test Accurancy: 0.1620
+Std Test AUC: 0.0956
+clients: 8
+Training client: 1  Time Cost:  3.302121877670288
+Training client: 2  Time Cost:  4.971383333206177
+Training client: 3  Time Cost:  1.389169454574585
+Training client: 4  Time Cost:  3.3355062007904053
+Training client: 5  Time Cost:  4.010558366775513
+Training client: 6  Time Cost:  3.648451566696167
+Training client: 7  Time Cost:  3.4101905822753906
+Training client: 8  Time Cost:  62.58487057685852
+Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio:Droupout_ratio: 0.6
+------------------------- time cost ------------------------- 139.9344458580017
+Dropped clients: [10, 0, 4, 9, 12, 15, 16, 8, 13, 14, 3, 17, 5, 1, 19, 2, 6, 7]
+-------------Round number: 2-------------

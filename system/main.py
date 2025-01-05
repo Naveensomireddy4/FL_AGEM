@@ -26,6 +26,10 @@ import numpy as np
 import torchvision
 import logging
 
+
+from torchvision.models import resnet18, resnet50
+
+
 from flcore.servers.serveravg import FedAvg
 from flcore.servers.serverpFedMe import pFedMe
 from flcore.servers.serverperavg import PerAvg
@@ -66,6 +70,7 @@ from flcore.trainmodel.models import *
 
 from flcore.trainmodel.bilstm import *
 from flcore.trainmodel.resnet import *
+from flcore.trainmodel.my import *
 from flcore.trainmodel.alexnet import *
 from flcore.trainmodel.mobilenet_v2 import *
 from flcore.trainmodel.transformer import *
@@ -103,6 +108,9 @@ def run(args):
                 args.model = Mclr_Logistic(3*32*32, num_classes=args.num_classes).to(args.device)
             else:
                 args.model = Mclr_Logistic(60, num_classes=args.num_classes).to(args.device)
+                
+        elif model_str == "SimpleCnn": # non-convex
+            args.model = SimpleCnn( num_classes=args.num_classes).to(args.device)
 
         elif model_str == "cnn": # non-convex
             if "MNIST" in args.dataset:
@@ -136,7 +144,11 @@ def run(args):
         
         elif model_str == "resnet10":
             args.model = resnet10(num_classes=args.num_classes).to(args.device)
-        
+            
+        elif model_str == 'resnet18':
+            args.model =   y(in_channels=28, num_classes=args.num_classes)
+        elif model_str == 'resnet50':
+            args.model =   z(in_channels=3, num_classes=args.num_classes)
         elif model_str == "resnet34":
             args.model = torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes).to(args.device)
 

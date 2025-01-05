@@ -1,0 +1,15 @@
+
+Dropped clients: [2, 9, 19, 12, 5, 15]
+Traceback (most recent call last):
+  File "C:\Users\Bobby\Akash_Django\NonIit\PFLlib\system\main.py", line 548, in <module>
+    run(args)
+  File "C:\Users\Bobby\Akash_Django\NonIit\PFLlib\system\main.py", line 374, in run
+    server.train()
+  File "C:\Users\Bobby\Akash_Django\NonIit\PFLlib\system\flcore\servers\serveravg.py", line 108, in train
+    self.send_models()
+  File "C:\Users\Bobby\Akash_Django\NonIit\PFLlib\system\flcore\servers\serverbase.py", line 129, in send_models
+    client.set_parameters(self.global_model)
+  File "C:\Users\Bobby\Akash_Django\NonIit\PFLlib\system\flcore\clients\clientbase.py", line 88, in set_parameters
+    old_param.data = new_param.data.clone()
+    ^^^^^^^^^^^^^^
+KeyboardInterrupt

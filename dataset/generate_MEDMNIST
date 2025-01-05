@@ -1,0 +1,65 @@
+import numpy as np
+import os
+import sys
+import random
+import torch
+import torchvision.transforms as transforms
+from utils.dataset_utils import check, separate_data, split_data, save_file
+from medmnist import BloodMNIST
+
+random.seed(1)
+np.random.seed(1)
+num_clients = 20
+dir_path = "BloodMNIST/"
+
+# Allocate data to users
+def generate_dataset(dir_path, num_clients, niid, balance, partition):
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+        
+    # Setup directory for train/test data
+    config_path = os.path.join(dir_path, "config.json")
+    train_path = os.path.join(dir_path, "train")
+    test_path = os.path.join(dir_path, "test")
+
+    if check(config_path, train_path, test_path, num_clients, niid, balance, partition):
+        return
+
+    # Transform for the dataset
+    transform = transforms.Compose([transforms.Grayscale(),transforms.ToTensor(), transforms.Normalize([0.5], [0.5])])
+
+    # Get BloodMNIST data
+    trainset = BloodMNIST(split='train', transform=transform, download=True)
+    testset = BloodMNIST(split='test', transform=transform, download=True)
+    
+    # Combine train and test datasets
+    dataset_image = np.concatenate((trainset.imgs, testset.imgs), axis=0)
+    dataset_label = np.concatenate((trainset.labels, testset.labels), axis=0)
+
+    # Normalize the images to [0, 1]
+    dataset_image = dataset_image.astype(np.float32) / 255.0
+
+    num_classes = len(np.unique(dataset_label))
+    print(f'Number of classes: {num_classes}')
+
+    # Ensure labels are in the correct shape (1-dimensional)
+    dataset_label = dataset_label.flatten()
+    print(dataset_label.shape , dataset_image[0].shape)
+    
+
+    X, y, statistic = separate_data((dataset_image, dataset_label), num_clients, num_classes, 
+                                    niid, balance, partition, class_per_client=2)
+    train_data, test_data = split_data(X, y)
+    save_file(config_path, train_path, test_path, train_data, test_data, num_clients, num_classes, 
+        statistic, niid, balance, partition)
+
+if __name__ == "__main__":
+    if len(sys.argv) < 4:
+        print("Usage: python generate_MEDMNIST.py <noniid|iid> <balance|unbalance> <partition_method|- for none>")
+        sys.exit(1)
+
+    niid = True if sys.argv[1] == "noniid" else False
+    balance = True if sys.argv[2] == "balance" else False
+    partition = sys.argv[3] if sys.argv[3] != "-" else None
+
+    generate_dataset(dir_path, num_clients, niid, balance, partition)

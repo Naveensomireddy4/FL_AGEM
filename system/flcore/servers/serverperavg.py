@@ -45,12 +45,19 @@ class PerAvg(Server):
             if i%self.eval_gap == 0:
                 print(f"\n-------------Round number: {i}-------------")
                 print("\nEvaluate global model with one step update")
+                eval_st=time.time()
                 self.evaluate_one_step()
+                cnt=1
+                print("Evaluation time:",time.time()-eval_st)    
+                    
 
             # choose several clients to send back upated model to server
             for client in self.selected_clients:
+                st=time.time()
                 client.train()
-                client.train()
+                print("Training client:",cnt, " Time Cost : ",time.time()-st)
+                cnt=cnt+1
+                
 
             # threads = [Thread(target=client.train)
             #            for client in self.selected_clients]

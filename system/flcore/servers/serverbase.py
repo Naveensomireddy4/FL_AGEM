@@ -22,8 +22,12 @@ import h5py
 import copy
 import time
 import random
+import wandb
 from utils.data_utils import read_client_data
 from utils.dlg import DLG
+
+
+
 
 
 class Server(object):
@@ -127,12 +131,15 @@ class Server(object):
             client.send_time_cost['num_rounds'] += 1
             client.send_time_cost['total_cost'] += 2 * (time.time() - start_time)
 
-    def receive_models(self):
-        assert (len(self.selected_clients) > 0)
+    def receive_models(self,req_clients=None):
+        assert (len(req_clients) > 0)
+      # when droupout=0 use temp_selected_clients else use selectde_clients
 
         active_clients = random.sample(
-            self.selected_clients, int((1-self.client_drop_rate) * self.current_num_join_clients))
-
+        req_clients, int(len(req_clients)))#droup_ration=0.2
+        
+    
+        
         self.uploaded_ids = []
         self.uploaded_weights = []
         self.uploaded_models = []
@@ -153,6 +160,8 @@ class Server(object):
 
     def aggregate_parameters(self):
         assert (len(self.uploaded_models) > 0)
+        
+        print("*"*25,"length of uploaded models","*"*25,len(self.uploaded_models))
 
         self.global_model = copy.deepcopy(self.uploaded_models[0])
         for param in self.global_model.parameters():
@@ -384,3 +393,17 @@ class Server(object):
         ids = [c.id for c in self.new_clients]
 
         return ids, num_samples, tot_correct, tot_auc
+    
+    
+     
+    def get_global_weights(self):
+    # Initialize an empty dictionary to store the weights
+        global_weights_dict = {}
+        
+        # Iterate over named parameters in the global model
+        for name, param in self.global_model.named_parameters():
+            # Add parameter name and its data to the dictionary
+            global_weights_dict[name] = param.data
+        
+        # Return the dictionary containing global weights
+        return global_weights_dict

@@ -1,0 +1,64 @@
+{
+    "os": "Windows-11-10.0.22631-SP0",
+    "python": "3.12.3",
+    "heartbeatAt": "2024-05-30T05:12:47.529899",
+    "startedAt": "2024-05-30T05:12:45.555562",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "-data",
+        "BloodMNIST",
+        "-m",
+        "resnet18",
+        "-algo",
+        "FedAvg",
+        "-gr",
+        "2",
+        "-did",
+        "0"
+    ],
+    "state": "running",
+    "program": "C:\\Users\\Bobby\\Akash_Django\\NonIit\\PFLlib\\system\\main.py",
+    "codePathLocal": "main.py",
+    "codePath": "system\\main.py",
+    "git": {
+        "remote": "https://github.com/TsingZ0/PFLlib.git",
+        "commit": "47f052069dcd19fbb7e37b14dd37823a363c2464"
+    },
+    "email": null,
+    "root": "C:/Users/Bobby/Akash_Django/NonIit/PFLlib",
+    "host": "SEVTN",
+    "username": "Bobby",
+    "executable": "C:\\Users\\Bobby\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3000.0,
+        "min": 0.0,
+        "max": 3000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3000.0,
+            "min": 0.0,
+            "max": 3000.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 237.63085556030273,
+            "used": 202.35023880004883
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1650 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1650 Ti",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 7.36431884765625
+    }
+}

@@ -531,3 +531,37 @@ class TextCNN(nn.Module):
 #   @staticmethod
 #   def backward(ctx, grad_output):
 #     return grad_output
+
+import torch
+import torch.nn as nn
+
+class SimpleCnn(nn.Module):
+    def __init__(self, num_classes=10):
+        super(SimpleCnn, self).__init__()
+        # Convolutional layers
+        self.conv1 = nn.Conv2d(in_channels=28, out_channels=16, kernel_size=3, stride=1, padding=1)
+        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)
+        # Max pooling layers
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        # Fully connected layers
+        self.fc1 = nn.Linear(32 * 7 * 7, 128)  # Adjusted input size
+        self.fc2 = nn.Linear(128, num_classes)
+
+    def forward(self, x):
+        # Convolutional layers with ReLU activation function
+        x = torch.relu(self.conv1(x))
+        x = self.pool(x)
+        x = torch.relu(self.conv2(x))
+        x = self.pool(x)
+        # Flatten the output for fully connected layers
+        x = torch.flatten(x, 1)
+        # Fully connected layers with ReLU activation function
+        x = torch.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+# Create an instance of the model
+model = SimpleCnn()
+
+# Print the model architecture
+print(model)
