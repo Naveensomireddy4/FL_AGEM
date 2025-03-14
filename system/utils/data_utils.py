@@ -21,6 +21,9 @@ import torch
 
 
 def read_data(dataset, idx, is_train=True):
+    # print("*"*25)
+    # print(f"loading {dataset} for {idx}")
+    # print("*"*25)
     if is_train:
         train_data_dir = os.path.join('../dataset', dataset, 'train/')
 

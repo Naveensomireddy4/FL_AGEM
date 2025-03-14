@@ -6,7 +6,9 @@ from collections import defaultdict
 from flcore.clients.clientavg import clientAVG
 from flcore.servers.serverbase import Server
 from .helper import *
-
+import wandb
+import math
+#wandb.init(project='fl', entity='naveen2112')
 class FedAvg(Server):
     def __init__(self, args, times):
         super().__init__(args, times)
@@ -113,12 +115,12 @@ class FedAvg(Server):
             self.selected_clients, dropped_clients, _ = self.select_clients()
             self.dropped_clients_nearest_clients = self.finding_nearest_clients_to_dropped_client(dropped_clients)
             self.agg_clients = []  # all the clients which are ready for aggregation will be sent into this list
-            self.send_models()
+            # self.send_models()
 
-            if i % self.eval_gap == 0:
-                print(f"\n-------------Round number: {i}-------------")
-                print("\nEvaluate global model")
-                self.evaluate()
+            # if i % self.eval_gap == 0:
+            #     print(f"\n-------------Round number: {i}-------------")
+            #     print("\nEvaluate global model")
+            #     self.evaluate( round = i)
 
             print("Clients:", len(self.selected_clients))
 
@@ -129,22 +131,25 @@ class FedAvg(Server):
 
             threads = []
             for client in self.selected_clients:
-                thread = Thread(target=self.train_and_aggregate_client, args=(client,))
-                threads.append(thread)
-                thread.start()
+                client.train(round = i)
 
-            for thread in threads:
-                thread.join()
-
-            self.receive_models(req_clients=self.agg_clients)
+            self.receive_models(req_clients=self.selected_clients)
             self.aggregate_parameters()
+            self.send_models()
+
+            if i % self.eval_gap == 0:
+                print(f"\n-------------Round number: {i}-------------")
+                print("\nEvaluate global model")
+                self.evaluate( round = i)
+
+            print("Clients:", len(self.selected_clients))
 
             # Calculate and print percentage difference between client and global weights
             for client in self.selected_clients:
                 weights = client.get_weights()
                 global_weights = self.get_global_weights()
                 perc_diffs = calculate_percentage_difference(weights, global_weights)
-                print("Client:", client.id, "Percentage Difference:", (1 - perc_diffs) * 100)
+               # print("Client:", client.id, "Percentage Difference:", (1 - perc_diffs) * 100)
 
             self.Budget.append(time.time() - s_t)
             print('-' * 25, 'Time cost', '-' * 25, self.Budget[-1])

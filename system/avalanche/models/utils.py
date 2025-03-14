@@ -20,11 +20,14 @@ def is_multi_task_module(model: nn.Module) -> bool:
     )
 
 
-def avalanche_forward(model, x, task_labels):
+def avalanche_forward(model, x, task_labels=[],task_id =0):
     if is_multi_task_module(model):
+        print(".........multimodel found......")
         return model(x, task_labels)
     else:  # no task labels
-        return model(x)
+        #print(".........single model found......")
+        return model(x, task_id=task_id)  # Ensure task_id is passed
+
 
 
 class FeatureExtractorBackbone(nn.Module):

@@ -24,17 +24,15 @@ batch_size = 10
 
 # split an original model into a base and a head
 class BaseHeadSplit(nn.Module):
-    def __init__(self, base, head):
+    def __init__(self, base_model, heads):
         super(BaseHeadSplit, self).__init__()
+        self.base_model = base_model
+        self.heads = heads
 
-        self.base = base
-        self.head = head
-        
-    def forward(self, x):
-        out = self.base(x)
-        out = self.head(out)
+    def forward(self, x, task_id):
+        features = self.base_model(x)  # Extract shared features
+        return self.heads[task_id](features)  # Select correct head
 
-        return out
 
 ###########################################################
 

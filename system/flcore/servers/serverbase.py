@@ -23,6 +23,7 @@ import copy
 import time
 import random
 import wandb
+import math
 from utils.data_utils import read_client_data
 from utils.dlg import DLG
 
@@ -82,6 +83,9 @@ class Server(object):
         self.new_clients = []
         self.eval_new_clients = False
         self.fine_tuning_epoch_new = args.fine_tuning_epoch_new
+        self.round = 0
+        self.classes_per_task = 0
+        self.round_per_task = 10
 
     def set_clients(self, clientObj):
         for i, train_slow, send_slow in zip(range(self.num_clients), self.train_slow_clients, self.send_slow_clients):
@@ -216,16 +220,16 @@ class Server(object):
     def load_item(self, item_name):
         return torch.load(os.path.join(self.save_folder_name, "server_" + item_name + ".pt"))
 
-    def test_metrics(self):
+    def test_metrics(self,round = 0):
         if self.eval_new_clients and self.num_new_clients > 0:
             self.fine_tuning_new_clients()
-            return self.test_metrics_new_clients()
+            return self.test_metrics_new_clients(round = round)
         
         num_samples = []
         tot_correct = []
         tot_auc = []
         for c in self.clients:
-            ct, ns, auc = c.test_metrics()
+            ct, ns, auc = c.test_metrics(round)
             tot_correct.append(ct*1.0)
             tot_auc.append(auc*ns)
             num_samples.append(ns)
@@ -234,14 +238,14 @@ class Server(object):
 
         return ids, num_samples, tot_correct, tot_auc
 
-    def train_metrics(self):
+    def train_metrics(self,round =0):
         if self.eval_new_clients and self.num_new_clients > 0:
             return [0], [1], [0]
         
         num_samples = []
         losses = []
         for c in self.clients:
-            cl, ns = c.train_metrics()
+            cl, ns = c.train_metrics(round)
             num_samples.append(ns)
             losses.append(cl*1.0)
 
@@ -250,32 +254,38 @@ class Server(object):
         return ids, num_samples, losses
 
     # evaluate selected clients
-    def evaluate(self, acc=None, loss=None):
-        stats = self.test_metrics()
-        stats_train = self.train_metrics()
+    def evaluate(self, acc=None, loss=None,round = 0):
+        self.round = round
+        idx =math.floor( round/self.round_per_task)+1   #10 is the number of rounds for rach task
+        for i in range(idx):
+            print(f"evaluation for task {i}")
 
-        test_acc = sum(stats[2])*1.0 / sum(stats[1])
-        test_auc = sum(stats[3])*1.0 / sum(stats[1])
-        train_loss = sum(stats_train[2])*1.0 / sum(stats_train[1])
-        accs = [a / n for a, n in zip(stats[2], stats[1])]
-        aucs = [a / n for a, n in zip(stats[3], stats[1])]
-        
-        if acc == None:
-            self.rs_test_acc.append(test_acc)
-        else:
-            acc.append(test_acc)
-        
-        if loss == None:
-            self.rs_train_loss.append(train_loss)
-        else:
-            loss.append(train_loss)
+            stats = self.test_metrics(round = i)
 
-        print("Averaged Train Loss: {:.4f}".format(train_loss))
-        print("Averaged Test Accurancy: {:.4f}".format(test_acc))
-        print("Averaged Test AUC: {:.4f}".format(test_auc))
-        # self.print_(test_acc, train_acc, train_loss)
-        print("Std Test Accurancy: {:.4f}".format(np.std(accs)))
-        print("Std Test AUC: {:.4f}".format(np.std(aucs)))
+            stats_train = self.train_metrics(round = i)
+
+            test_acc = sum(stats[2])*1.0 / sum(stats[1])
+            test_auc = sum(stats[3])*1.0 / sum(stats[1])
+            train_loss = sum(stats_train[2])*1.0 / sum(stats_train[1])
+            accs = [a / n for a, n in zip(stats[2], stats[1])]
+            aucs = [a / n for a, n in zip(stats[3], stats[1])]
+            
+            if acc == None:
+                self.rs_test_acc.append(test_acc)
+            else:
+                acc.append(test_acc)
+            
+            if loss == None:
+                self.rs_train_loss.append(train_loss)
+            else:
+                loss.append(train_loss)
+
+            print("Averaged Train Loss: {:.4f}".format(train_loss))
+            print("Averaged Test Accurancy: {:.4f}".format(test_acc))
+            print("Averaged Test AUC: {:.4f}".format(test_auc))
+            # self.print_(test_acc, train_acc, train_loss)
+            print("Std Test Accurancy: {:.4f}".format(np.std(accs)))
+            print("Std Test AUC: {:.4f}".format(np.std(aucs)))
 
     def print_(self, test_acc, test_auc, train_loss):
         print("Average Test Accurancy: {:.4f}".format(test_acc))
@@ -380,12 +390,12 @@ class Server(object):
                     opt.step()
 
     # evaluating on new clients
-    def test_metrics_new_clients(self):
+    def test_metrics_new_clients(self,round = 0):
         num_samples = []
         tot_correct = []
         tot_auc = []
         for c in self.new_clients:
-            ct, ns, auc = c.test_metrics()
+            ct, ns, auc = c.test_metrics(round = 0)
             tot_correct.append(ct*1.0)
             tot_auc.append(auc*ns)
             num_samples.append(ns)

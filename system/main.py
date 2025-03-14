@@ -71,6 +71,7 @@ from flcore.trainmodel.models import *
 from flcore.trainmodel.bilstm import *
 from flcore.trainmodel.resnet import *
 from flcore.trainmodel.my import *
+from flcore.trainmodel.resnet_110 import *
 from flcore.trainmodel.alexnet import *
 from flcore.trainmodel.mobilenet_v2 import *
 from flcore.trainmodel.transformer import *
@@ -144,11 +145,14 @@ def run(args):
         
         elif model_str == "resnet10":
             args.model = resnet10(num_classes=args.num_classes).to(args.device)
+        elif model_str == "rsenet110":
+            args.model = ResNet110ResNet110(in_channels=3, num_classes=100)    
             
         elif model_str == 'resnet18':
-            args.model =   y(in_channels=28, num_classes=args.num_classes)
+            # in_channels =28 for blood
+            args.model =   ResNet18_TIL(in_channels=32,num_classes_per_task=100,num_tasks=5)
         elif model_str == 'resnet50':
-            args.model =   z(in_channels=3, num_classes=args.num_classes)
+            args.model =   ResNet50(in_channels=3, num_classes=args.num_classes)
         elif model_str == "resnet34":
             args.model = torchvision.models.resnet34(pretrained=False, num_classes=args.num_classes).to(args.device)
 
@@ -212,9 +216,9 @@ def run(args):
 
         # select algorithm
         if args.algorithm == "FedAvg":
-            args.head = copy.deepcopy(args.model.fc)
-            args.model.fc = nn.Identity()
-            args.model = BaseHeadSplit(args.model, args.head)
+            args.head = copy.deepcopy(args.model.task_heads)  # Copy the task-specific heads
+            args.model.task_heads = nn.ModuleList([nn.Identity() for _ in range(args.model.num_tasks)])  # Replace heads with identity layers
+            args.model = BaseHeadSplit(args.model, args.head)  # Ensure compatibility
             server = FedAvg(args, i)
 
         elif args.algorithm == "Local":

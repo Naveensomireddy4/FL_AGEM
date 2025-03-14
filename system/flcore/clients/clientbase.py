@@ -20,6 +20,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 import os
+import math
 from torch.utils.data import DataLoader
 from sklearn.preprocessing import label_binarize
 from sklearn import metrics
@@ -47,6 +48,9 @@ class Client(object):
         self.learning_rate = args.local_learning_rate
         self.local_epochs = args.local_epochs
 
+        self.round_per_task = 10
+        self.classes_per_task = 0
+
         # check BatchNorm
         self.has_BatchNorm = False
         for layer in self.model.children():
@@ -71,15 +75,21 @@ class Client(object):
         self.learning_rate_decay = args.learning_rate_decay
 
 
-    def load_train_data(self, batch_size=None):
+    def load_train_data(self, batch_size=None,round=0):
         if batch_size == None:
             batch_size = self.batch_size
+        datasets=["task_0","task_1","task_2","task_3","task_4"]
+        idx = math.floor(round)
+        self.dataset = datasets[idx]
         train_data = read_client_data(self.dataset, self.id, is_train=True)
         return DataLoader(train_data, batch_size, drop_last=True, shuffle=True)
 
-    def load_test_data(self, batch_size=None):
+    def load_test_data(self, batch_size=None,round =0):
         if batch_size == None:
             batch_size = self.batch_size
+        datasets=["task_0","task_1","task_2","task_3","task_4"]
+        idx = math.floor(round)
+        self.dataset = datasets[idx]    
         test_data = read_client_data(self.dataset, self.id, is_train=False)
         return DataLoader(test_data, batch_size, drop_last=False, shuffle=True)
         
@@ -96,8 +106,10 @@ class Client(object):
         for param, new_param in zip(model.parameters(), new_params):
             param.data = new_param.data.clone()
 
-    def test_metrics(self):
-        testloaderfull = self.load_test_data()
+    def test_metrics(self,round ):
+        self.round = round
+        testloaderfull = self.load_test_data(round = round)
+        #print(f"test_loader_length_{len(testloaderfull)}")
         # self.model = self.load_model('model')
         # self.model.to(self.device)
         self.model.eval()
@@ -106,7 +118,8 @@ class Client(object):
         test_num = 0
         y_prob = []
         y_true = []
-        
+        import torch
+        import numpy as np
         with torch.no_grad():
             for x, y in testloaderfull:
                 if type(x) == type([]):
@@ -114,7 +127,9 @@ class Client(object):
                 else:
                     x = x.to(self.device)
                 y = y.to(self.device)
-                output = self.model(x)
+
+                output = self.model(x, task_id=math.floor(round))
+                y = y - (round * self.classes_per_task)
 
                 test_acc += (torch.sum(torch.argmax(output, dim=1) == y)).item()
                 test_num += y.shape[0]
@@ -131,15 +146,54 @@ class Client(object):
         # self.model.cpu()
         # self.save_model(self.model, 'model')
 
-        y_prob = np.concatenate(y_prob, axis=0)
-        y_true = np.concatenate(y_true, axis=0)
+        # Debugging before concatenation
+        y_prob = np.concatenate(y_prob, axis=0)  # Convert list of arrays → single array
+        y_true = np.concatenate(y_true, axis=0)  # Convert list of arrays → single array
+       
+       
+        # for bloodmnist
+        # y_true = np.argmax(y_true, axis=1)  # Convert one-hot to class labels
+        # y_prob = y_prob[:, 1]  # Take probability of class 1
+       
+        # No need to argmax for y_true if it's already class labels
+       # Apply softmax to logits
+        import numpy as np
+        import torch
+        from sklearn import metrics
 
-        auc = metrics.roc_auc_score(y_true, y_prob, average='micro')
+        # Convert logits to probabilities
+        y_prob = torch.softmax(torch.tensor(y_prob), dim=1).numpy()
+
+        # Ensure y_prob has the correct shape
+        num_samples = len(y_true)
+        num_classes = y_prob.shape[-1]  # Should match number of classes
+        #print(f"y_true shape: {y_true.shape}, y_prob shape: {y_prob.shape}")
+
+        if y_prob.shape[0] != num_samples:
+            y_prob = y_prob.reshape(num_samples, num_classes)
+
+
+        y_true_expanded = np.zeros((y_true.shape[0], 100))
+
+        # Copy existing y_true values into the first 10 columns
+        y_true_expanded[:, :10] = y_true
+        
+
+        y_true = y_true_expanded
+        # Compute AUC score
+        #print(f"y_true shape: {y_true.shape}, y_prob shape: {y_prob.shape}")
+
+        auc = metrics.roc_auc_score(y_true, y_prob, average='micro', multi_class='ovr')
+
+
+
+
         
         return test_acc, test_num, auc
 
-    def train_metrics(self):
-        trainloader = self.load_train_data()
+    def train_metrics(self,round):
+        self.round =round 
+        trainloader = self.load_train_data(round = round)
         # self.model = self.load_model('model')
         # self.model.to(self.device)
         self.model.eval()
@@ -153,7 +207,11 @@ class Client(object):
                 else:
                     x = x.to(self.device)
                 y = y.to(self.device)
-                output = self.model(x)
+                task_id = math.floor(round)
+                output = self.model(x,task_id = math.floor(round))
+                #print(f"Before modification: y.unique() = {y.unique()}")
+                y = y - (task_id * self.classes_per_task)
+                #print(f"After modification: y.unique() = {y.unique()}")
                 loss = self.loss(output, y)
                 train_num += y.shape[0]
                 losses += loss.item() * y.shape[0]
