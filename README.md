@@ -1,7 +1,6 @@
 # Federated Learning with AGEM & FedAvg
 
 This repository contains the implementation of Federated Learning (FL) using **Federated Averaging (FedAvg)** and **Average Gradient Episodic Memory (AGEM)**. The implementation includes both **client-side** and **server-side** functionalities.
-# Federated Learning with AGEM and FedAvg
 
 ## Code Structure
 
