@@ -6,6 +6,7 @@ This repository contains the implementation of Federated Learning (FL) using **F
 - **AGEM Code**: Located at `system/avalanche/training/plugins/agem.py`
 - **Client-Side Code**: Located at `system/flcore/clients`
 - **Server-Side Code**: Located at `system/flcore/servers`
+- **Model-Side Code**: Located at `system/flcore/trainmodel/my.py`
 - **Base Classes**:
   - `clientbase.py`: Base implementation for client-side FL.
   - `serverbase.py`: Base implementation for server-side FL.
