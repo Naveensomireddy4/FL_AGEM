@@ -1,6 +1,42 @@
 # Federated Learning with AGEM & FedAvg
 
 This repository contains the implementation of Federated Learning (FL) using **Federated Averaging (FedAvg)** and **Average Gradient Episodic Memory (AGEM)**. The implementation includes both **client-side** and **server-side** functionalities.
+# Federated Learning with AGEM and FedAvg
+
+## Code Structure
+
+### Main Execution File
+- **Main Script:** `system/main.py`  
+  - This is the entry point to run the federated learning experiments.
+
+### Model Code
+- **Model Implementation:** `system/flcore/trainmodel/my.py`  
+  - Defines the model architecture used in the training.
+
+### Federated Learning Components
+#### Server-Side Code
+- **FedAvg Algorithm Implementation:** `system/flcore/servers/fedavg.py`
+- **Server Base Class:** `system/flcore/servers/serverbase.py`
+
+#### Client-Side Code
+- **Client Base Class:** `system/flcore/clients/clientbase.py`
+- **Client-Side FedAvg Implementation:** `system/flcore/clients/clientavg.py`
+
+### AGEM Plugin
+- **AGEM Algorithm Implementation:** `system/avalanche/training/plugins/agem.py`
+
+## Running the Code
+To execute the federated learning experiment using BloodMNIST dataset and ResNet18 model, run the following command from the `system` directory:
+
+```sh
+python3 main.py -data BloodMNIST -m resnet18 -algo FedAvg -gr 50 -did 0 -nc 3
+```
+
+## Notes
+- The implementation uses FedAvg as the aggregation algorithm.
+- The client and server implementations extend from the respective base classes for flexibility.
+
+
 
 ## 📁 **Project Structure**
 - **AGEM Code**: Located at `system/avalanche/training/plugins/agem.py`
