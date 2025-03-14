@@ -25,12 +25,6 @@ This repository contains the implementation of Federated Learning (FL) using **F
 ### AGEM Plugin
 - **AGEM Algorithm Implementation:** `system/avalanche/training/plugins/agem.py`
 
-## Running the Code
-To execute the federated learning experiment using BloodMNIST dataset and ResNet18 model, run the following command from the `system` directory:
-
-```sh
-python3 main.py -data BloodMNIST -m resnet18 -algo FedAvg -gr 50 -did 0 -nc 3
-```
 
 ## Notes
 - The implementation uses FedAvg as the aggregation algorithm.
