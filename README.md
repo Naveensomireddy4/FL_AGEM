@@ -50,7 +50,7 @@ cd system
 
 ### **2. Run the Training Script**
 ```sh
-python3 main.py -data BloodMNIST -m resnet18 -algo FedAvg -gr 50 -did 0 -nc 3 -nb 20 -lbs 20 -ls 2
+python3 main.py -data BloodMNIST -m resnet18 -algo FedAvg -gr 99 -did 0 -nc 3 -nb 20 -lbs 20 -ls 2
 ```
 
 ## ⚙ **Command Parameters**
