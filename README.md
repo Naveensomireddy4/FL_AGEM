@@ -59,7 +59,7 @@ python3 main.py -data BloodMNIST -m resnet18 -algo FedAvg -gr 50 -did 0 -nc 3 -n
 | `-data BloodMNIST` | Uses **BloodMNIST** dataset from MedMNIST. |
 | `-m resnet18` | Uses **ResNet-18** as the model architecture. |
 | `-algo FedAvg` | Runs the **Federated Averaging (FedAvg)** algorithm. |
-| `-gr 50` | Sets **50** global communication rounds. |
+| `-gr 99` | Sets **50** global communication rounds. |
 | `-did 0` | Device ID (**0 for first available GPU**). Use `-1` for CPU. |
 | `-nc 3` | Number of clients (ensure it matches the dataset's clients count). |
 | `-nb 20` | Number of classes (ensure it matches the dataset's class count). |
