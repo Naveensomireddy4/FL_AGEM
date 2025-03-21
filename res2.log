@@ -1,0 +1,3151 @@
+SimpleCnn(
+  (conv1): Conv2d(28, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (conv2): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (fc1): Linear(in_features=1568, out_features=128, bias=True)
+  (fc2): Linear(in_features=128, out_features=10, bias=True)
+)
+==================================================
+Algorithm: FedAvg
+Local batch size: 20
+Local epochs: 2
+Local learing rate: 0.005
+Local learing rate decay: False
+Total number of clients: 3
+Clients join in each round: 1.0
+Clients randomly join: False
+Client drop rate: 0.0
+Client select regarding time: False
+Running times: 1
+Dataset: BloodMNIST
+Number of classes: 20
+Backbone: resnet18
+Using device: cuda
+Using DP: False
+Auto break: False
+Global rounds: 99
+Cuda device id: 0
+DLG attack: False
+Total number of new clients: 0
+Fine tuning epoches on new clients: 0
+==================================================
+
+============= Running time: 0th =============
+Creating server and clients ...
+ResNetTIL(
+  (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (dropout): Dropout(p=0.5, inplace=False)
+  (task_heads): ModuleList(
+    (0-4): 5 x Linear(in_features=512, out_features=20, bias=True)
+  )
+)
+
+Join ratio / total clients: 1.0 / 3
+Finished creating server and clients.
+Dropped clients for round 0 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 0-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.7597
+Averaged Test Accurancy: 0.0844
+Averaged Test AUC: 0.5676
+Std Test Accurancy: 0.0405
+Std Test AUC: 0.0116
+Clients: 3
+------------------------- Time cost ------------------------- 7.279256343841553
+Dropped clients for round 1 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 1-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5331
+Averaged Test Accurancy: 0.1758
+Averaged Test AUC: 0.7323
+Std Test Accurancy: 0.0503
+Std Test AUC: 0.0219
+Clients: 3
+------------------------- Time cost ------------------------- 7.004499197006226
+Dropped clients for round 2 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 2-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.3795
+Averaged Test Accurancy: 0.2575
+Averaged Test AUC: 0.7832
+Std Test Accurancy: 0.0228
+Std Test AUC: 0.0251
+Clients: 3
+------------------------- Time cost ------------------------- 6.932145595550537
+Dropped clients for round 3 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 3-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.0175
+Averaged Test Accurancy: 0.3272
+Averaged Test AUC: 0.8324
+Std Test Accurancy: 0.0267
+Std Test AUC: 0.0205
+Clients: 3
+------------------------- Time cost ------------------------- 6.9365599155426025
+Dropped clients for round 4 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 4-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.9784
+Averaged Test Accurancy: 0.3325
+Averaged Test AUC: 0.8322
+Std Test Accurancy: 0.0373
+Std Test AUC: 0.0137
+Clients: 3
+------------------------- Time cost ------------------------- 6.933845520019531
+Dropped clients for round 5 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 5-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.6711
+Averaged Test Accurancy: 0.3608
+Averaged Test AUC: 0.8564
+Std Test Accurancy: 0.0334
+Std Test AUC: 0.0195
+Clients: 3
+------------------------- Time cost ------------------------- 6.935429334640503
+Dropped clients for round 6 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 6-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.5454
+Averaged Test Accurancy: 0.3731
+Averaged Test AUC: 0.8648
+Std Test Accurancy: 0.0177
+Std Test AUC: 0.0108
+Clients: 3
+------------------------- Time cost ------------------------- 7.051753997802734
+Dropped clients for round 7 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 7-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.3696
+Averaged Test Accurancy: 0.3744
+Averaged Test AUC: 0.8600
+Std Test Accurancy: 0.0089
+Std Test AUC: 0.0091
+Clients: 3
+------------------------- Time cost ------------------------- 6.949105978012085
+Dropped clients for round 8 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 8-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.2903
+Averaged Test Accurancy: 0.3822
+Averaged Test AUC: 0.8636
+Std Test Accurancy: 0.0108
+Std Test AUC: 0.0094
+Clients: 3
+------------------------- Time cost ------------------------- 6.9289939403533936
+Dropped clients for round 9 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 9-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.1862
+Averaged Test Accurancy: 0.3694
+Averaged Test AUC: 0.8592
+Std Test Accurancy: 0.0287
+Std Test AUC: 0.0152
+Clients: 3
+------------------------- Time cost ------------------------- 6.89476203918457
+Dropped clients for round 10 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 10-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.0057
+Averaged Test Accurancy: 0.3839
+Averaged Test AUC: 0.8610
+Std Test Accurancy: 0.0252
+Std Test AUC: 0.0022
+Clients: 3
+------------------------- Time cost ------------------------- 6.918813228607178
+Dropped clients for round 11 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 11-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.8065
+Averaged Test Accurancy: 0.4072
+Averaged Test AUC: 0.8714
+Std Test Accurancy: 0.0298
+Std Test AUC: 0.0090
+Clients: 3
+------------------------- Time cost ------------------------- 6.894646644592285
+Dropped clients for round 12 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 12-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.7539
+Averaged Test Accurancy: 0.4167
+Averaged Test AUC: 0.8721
+Std Test Accurancy: 0.0230
+Std Test AUC: 0.0107
+Clients: 3
+------------------------- Time cost ------------------------- 7.019591569900513
+Dropped clients for round 13 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 13-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.6660
+Averaged Test Accurancy: 0.4142
+Averaged Test AUC: 0.8707
+Std Test Accurancy: 0.0161
+Std Test AUC: 0.0041
+Clients: 3
+------------------------- Time cost ------------------------- 6.90041446685791
+Dropped clients for round 14 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 14-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.5994
+Averaged Test Accurancy: 0.4161
+Averaged Test AUC: 0.8681
+Std Test Accurancy: 0.0079
+Std Test AUC: 0.0041
+Clients: 3
+------------------------- Time cost ------------------------- 6.8918609619140625
+Dropped clients for round 15 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 15-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.4536
+Averaged Test Accurancy: 0.4217
+Averaged Test AUC: 0.8681
+Std Test Accurancy: 0.0120
+Std Test AUC: 0.0096
+Clients: 3
+------------------------- Time cost ------------------------- 6.927860498428345
+Dropped clients for round 16 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 16-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.5302
+Averaged Test Accurancy: 0.3992
+Averaged Test AUC: 0.8619
+Std Test Accurancy: 0.0223
+Std Test AUC: 0.0023
+Clients: 3
+------------------------- Time cost ------------------------- 7.288572072982788
+Dropped clients for round 17 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 17-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.4147
+Averaged Test Accurancy: 0.4183
+Averaged Test AUC: 0.8684
+Std Test Accurancy: 0.0152
+Std Test AUC: 0.0087
+Clients: 3
+------------------------- Time cost ------------------------- 7.439313173294067
+Dropped clients for round 18 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+[Client 1] No episodic memory found, starting fresh.
+[Client 2] No episodic memory found, starting fresh.
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 18-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.3790
+Averaged Test Accurancy: 0.3981
+Averaged Test AUC: 0.8570
+Std Test Accurancy: 0.0095
+Std Test AUC: 0.0005
+Clients: 3
+------------------------- Time cost ------------------------- 7.342778205871582
+Dropped clients for round 19 : []
+Clients: 3
+[Client 0] No episodic memory found, starting fresh.
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+[Client 1] No episodic memory found, starting fresh.
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+[Client 2] No episodic memory found, starting fresh.
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 19-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 0.3998
+Averaged Test Accurancy: 0.3947
+Averaged Test AUC: 0.8542
+Std Test Accurancy: 0.0189
+Std Test AUC: 0.0087
+Clients: 3
+------------------------- Time cost ------------------------- 289.8698105812073
+Dropped clients for round 20 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 20-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.9854
+Averaged Test Accurancy: 0.2972
+Averaged Test AUC: 0.7943
+Std Test Accurancy: 0.0204
+Std Test AUC: 0.0042
+evaluation for task 1
+Averaged Train Loss: 2.4737
+Averaged Test Accurancy: 0.2369
+Averaged Test AUC: 0.7677
+Std Test Accurancy: 0.0185
+Std Test AUC: 0.0204
+Clients: 3
+------------------------- Time cost ------------------------- 443.09432911872864
+Dropped clients for round 21 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 21-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.8305
+Averaged Test Accurancy: 0.2714
+Averaged Test AUC: 0.7651
+Std Test Accurancy: 0.0306
+Std Test AUC: 0.0154
+evaluation for task 1
+Averaged Train Loss: 1.9996
+Averaged Test Accurancy: 0.3236
+Averaged Test AUC: 0.8266
+Std Test Accurancy: 0.0062
+Std Test AUC: 0.0079
+Clients: 3
+------------------------- Time cost ------------------------- 456.69148111343384
+Dropped clients for round 22 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 22-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 1.8276
+Averaged Test Accurancy: 0.2764
+Averaged Test AUC: 0.7803
+Std Test Accurancy: 0.0104
+Std Test AUC: 0.0170
+evaluation for task 1
+Averaged Train Loss: 1.7180
+Averaged Test Accurancy: 0.3522
+Averaged Test AUC: 0.8353
+Std Test Accurancy: 0.0244
+Std Test AUC: 0.0254
+Clients: 3
+------------------------- Time cost ------------------------- 456.5078511238098
+Dropped clients for round 23 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 23-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.2274
+Averaged Test Accurancy: 0.2517
+Averaged Test AUC: 0.7480
+Std Test Accurancy: 0.0185
+Std Test AUC: 0.0218
+evaluation for task 1
+Averaged Train Loss: 1.7670
+Averaged Test Accurancy: 0.3264
+Averaged Test AUC: 0.8303
+Std Test Accurancy: 0.0094
+Std Test AUC: 0.0035
+Clients: 3
+------------------------- Time cost ------------------------- 454.04956102371216
+Dropped clients for round 24 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 24-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.4039
+Averaged Test Accurancy: 0.2150
+Averaged Test AUC: 0.7290
+Std Test Accurancy: 0.0295
+Std Test AUC: 0.0303
+evaluation for task 1
+Averaged Train Loss: 1.6150
+Averaged Test Accurancy: 0.3081
+Averaged Test AUC: 0.8224
+Std Test Accurancy: 0.0279
+Std Test AUC: 0.0168
+Clients: 3
+------------------------- Time cost ------------------------- 453.933278799057
+Dropped clients for round 25 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 25-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.1734
+Averaged Test Accurancy: 0.2400
+Averaged Test AUC: 0.7485
+Std Test Accurancy: 0.0179
+Std Test AUC: 0.0037
+evaluation for task 1
+Averaged Train Loss: 1.3563
+Averaged Test Accurancy: 0.3189
+Averaged Test AUC: 0.8293
+Std Test Accurancy: 0.0170
+Std Test AUC: 0.0127
+Clients: 3
+------------------------- Time cost ------------------------- 451.6696312427521
+Dropped clients for round 26 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 26-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5024
+Averaged Test Accurancy: 0.2114
+Averaged Test AUC: 0.7348
+Std Test Accurancy: 0.0315
+Std Test AUC: 0.0233
+evaluation for task 1
+Averaged Train Loss: 1.5634
+Averaged Test Accurancy: 0.3242
+Averaged Test AUC: 0.8125
+Std Test Accurancy: 0.0476
+Std Test AUC: 0.0326
+Clients: 3
+------------------------- Time cost ------------------------- 453.47583270072937
+Dropped clients for round 27 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 27-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5648
+Averaged Test Accurancy: 0.2053
+Averaged Test AUC: 0.7217
+Std Test Accurancy: 0.0174
+Std Test AUC: 0.0220
+evaluation for task 1
+Averaged Train Loss: 1.1761
+Averaged Test Accurancy: 0.3597
+Averaged Test AUC: 0.8317
+Std Test Accurancy: 0.0161
+Std Test AUC: 0.0172
+Clients: 3
+------------------------- Time cost ------------------------- 459.81425499916077
+Dropped clients for round 28 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 28-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.4541
+Averaged Test Accurancy: 0.2122
+Averaged Test AUC: 0.7326
+Std Test Accurancy: 0.0058
+Std Test AUC: 0.0108
+evaluation for task 1
+Averaged Train Loss: 0.9546
+Averaged Test Accurancy: 0.3586
+Averaged Test AUC: 0.8253
+Std Test Accurancy: 0.0172
+Std Test AUC: 0.0173
+Clients: 3
+------------------------- Time cost ------------------------- 458.20544266700745
+Dropped clients for round 29 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 29-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.6181
+Averaged Test Accurancy: 0.1969
+Averaged Test AUC: 0.7160
+Std Test Accurancy: 0.0082
+Std Test AUC: 0.0209
+evaluation for task 1
+Averaged Train Loss: 0.6909
+Averaged Test Accurancy: 0.3561
+Averaged Test AUC: 0.8291
+Std Test Accurancy: 0.0515
+Std Test AUC: 0.0278
+Clients: 3
+------------------------- Time cost ------------------------- 461.7159924507141
+Dropped clients for round 30 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 30-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.8860
+Averaged Test Accurancy: 0.2014
+Averaged Test AUC: 0.7049
+Std Test Accurancy: 0.0219
+Std Test AUC: 0.0102
+evaluation for task 1
+Averaged Train Loss: 0.9658
+Averaged Test Accurancy: 0.3558
+Averaged Test AUC: 0.8203
+Std Test Accurancy: 0.0051
+Std Test AUC: 0.0054
+Clients: 3
+------------------------- Time cost ------------------------- 460.7488012313843
+Dropped clients for round 31 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 31-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.4840
+Averaged Test Accurancy: 0.2069
+Averaged Test AUC: 0.7282
+Std Test Accurancy: 0.0224
+Std Test AUC: 0.0145
+evaluation for task 1
+Averaged Train Loss: 0.6319
+Averaged Test Accurancy: 0.3581
+Averaged Test AUC: 0.8286
+Std Test Accurancy: 0.0414
+Std Test AUC: 0.0193
+Clients: 3
+------------------------- Time cost ------------------------- 458.24286580085754
+Dropped clients for round 32 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 32-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.4321
+Averaged Test Accurancy: 0.2133
+Averaged Test AUC: 0.7381
+Std Test Accurancy: 0.0112
+Std Test AUC: 0.0042
+evaluation for task 1
+Averaged Train Loss: 0.6443
+Averaged Test Accurancy: 0.3772
+Averaged Test AUC: 0.8305
+Std Test Accurancy: 0.0175
+Std Test AUC: 0.0118
+Clients: 3
+------------------------- Time cost ------------------------- 452.87388944625854
+Dropped clients for round 33 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 33-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5275
+Averaged Test Accurancy: 0.2056
+Averaged Test AUC: 0.7225
+Std Test Accurancy: 0.0150
+Std Test AUC: 0.0076
+evaluation for task 1
+Averaged Train Loss: 0.4830
+Averaged Test Accurancy: 0.3817
+Averaged Test AUC: 0.8408
+Std Test Accurancy: 0.0165
+Std Test AUC: 0.0102
+Clients: 3
+------------------------- Time cost ------------------------- 453.52812027931213
+Dropped clients for round 34 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 34-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5071
+Averaged Test Accurancy: 0.1925
+Averaged Test AUC: 0.7193
+Std Test Accurancy: 0.0169
+Std Test AUC: 0.0204
+evaluation for task 1
+Averaged Train Loss: 0.4442
+Averaged Test Accurancy: 0.3878
+Averaged Test AUC: 0.8362
+Std Test Accurancy: 0.0166
+Std Test AUC: 0.0048
+Clients: 3
+------------------------- Time cost ------------------------- 453.8528175354004
+Dropped clients for round 35 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 35-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.4815
+Averaged Test Accurancy: 0.2019
+Averaged Test AUC: 0.7122
+Std Test Accurancy: 0.0087
+Std Test AUC: 0.0065
+evaluation for task 1
+Averaged Train Loss: 0.4990
+Averaged Test Accurancy: 0.3831
+Averaged Test AUC: 0.8399
+Std Test Accurancy: 0.0310
+Std Test AUC: 0.0116
+Clients: 3
+------------------------- Time cost ------------------------- 453.74083280563354
+Dropped clients for round 36 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 36-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.4405
+Averaged Test Accurancy: 0.1972
+Averaged Test AUC: 0.7170
+Std Test Accurancy: 0.0184
+Std Test AUC: 0.0078
+evaluation for task 1
+Averaged Train Loss: 0.3706
+Averaged Test Accurancy: 0.3808
+Averaged Test AUC: 0.8372
+Std Test Accurancy: 0.0126
+Std Test AUC: 0.0041
+Clients: 3
+------------------------- Time cost ------------------------- 457.4890389442444
+Dropped clients for round 37 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 37-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5701
+Averaged Test Accurancy: 0.1883
+Averaged Test AUC: 0.7124
+Std Test Accurancy: 0.0050
+Std Test AUC: 0.0075
+evaluation for task 1
+Averaged Train Loss: 0.3584
+Averaged Test Accurancy: 0.4006
+Averaged Test AUC: 0.8412
+Std Test Accurancy: 0.0201
+Std Test AUC: 0.0146
+Clients: 3
+------------------------- Time cost ------------------------- 461.28613018989563
+Dropped clients for round 38 : []
+Clients: 3
+*********New episodic memory length is 1***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 1***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 38-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.5615
+Averaged Test Accurancy: 0.1983
+Averaged Test AUC: 0.7158
+Std Test Accurancy: 0.0060
+Std Test AUC: 0.0067
+evaluation for task 1
+Averaged Train Loss: 0.2887
+Averaged Test Accurancy: 0.4122
+Averaged Test AUC: 0.8499
+Std Test Accurancy: 0.0194
+Std Test AUC: 0.0103
+Clients: 3
+------------------------- Time cost ------------------------- 459.49042224884033
+Dropped clients for round 39 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 39-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 2.6904
+Averaged Test Accurancy: 0.1881
+Averaged Test AUC: 0.7055
+Std Test Accurancy: 0.0061
+Std Test AUC: 0.0027
+evaluation for task 1
+Averaged Train Loss: 0.4255
+Averaged Test Accurancy: 0.3719
+Averaged Test AUC: 0.8295
+Std Test Accurancy: 0.0369
+Std Test AUC: 0.0103
+Clients: 3
+------------------------- Time cost ------------------------- 724.9919571876526
+Dropped clients for round 40 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 40-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4258
+Averaged Test Accurancy: 0.1481
+Averaged Test AUC: 0.6792
+Std Test Accurancy: 0.0139
+Std Test AUC: 0.0182
+evaluation for task 1
+Averaged Train Loss: 2.0155
+Averaged Test Accurancy: 0.2911
+Averaged Test AUC: 0.7799
+Std Test Accurancy: 0.0174
+Std Test AUC: 0.0146
+evaluation for task 2
+Averaged Train Loss: 2.1928
+Averaged Test Accurancy: 0.2772
+Averaged Test AUC: 0.8288
+Std Test Accurancy: 0.0494
+Std Test AUC: 0.0299
+Clients: 3
+------------------------- Time cost ------------------------- 729.5720989704132
+Dropped clients for round 41 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 41-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.2005
+Averaged Test Accurancy: 0.1358
+Averaged Test AUC: 0.6716
+Std Test Accurancy: 0.0201
+Std Test AUC: 0.0161
+evaluation for task 1
+Averaged Train Loss: 1.8327
+Averaged Test Accurancy: 0.2736
+Averaged Test AUC: 0.7795
+Std Test Accurancy: 0.0171
+Std Test AUC: 0.0078
+evaluation for task 2
+Averaged Train Loss: 1.6978
+Averaged Test Accurancy: 0.3672
+Averaged Test AUC: 0.8617
+Std Test Accurancy: 0.0301
+Std Test AUC: 0.0104
+Clients: 3
+------------------------- Time cost ------------------------- 733.463294506073
+Dropped clients for round 42 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 42-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.2893
+Averaged Test Accurancy: 0.1461
+Averaged Test AUC: 0.6680
+Std Test Accurancy: 0.0118
+Std Test AUC: 0.0093
+evaluation for task 1
+Averaged Train Loss: 2.0015
+Averaged Test Accurancy: 0.2319
+Averaged Test AUC: 0.7449
+Std Test Accurancy: 0.0087
+Std Test AUC: 0.0039
+evaluation for task 2
+Averaged Train Loss: 1.5924
+Averaged Test Accurancy: 0.3514
+Averaged Test AUC: 0.8483
+Std Test Accurancy: 0.0499
+Std Test AUC: 0.0310
+Clients: 3
+------------------------- Time cost ------------------------- 741.8009915351868
+Dropped clients for round 43 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 43-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1849
+Averaged Test Accurancy: 0.1392
+Averaged Test AUC: 0.6731
+Std Test Accurancy: 0.0224
+Std Test AUC: 0.0156
+evaluation for task 1
+Averaged Train Loss: 2.3483
+Averaged Test Accurancy: 0.2056
+Averaged Test AUC: 0.7346
+Std Test Accurancy: 0.0211
+Std Test AUC: 0.0120
+evaluation for task 2
+Averaged Train Loss: 1.5285
+Averaged Test Accurancy: 0.3644
+Averaged Test AUC: 0.8426
+Std Test Accurancy: 0.0256
+Std Test AUC: 0.0220
+Clients: 3
+------------------------- Time cost ------------------------- 744.2161824703217
+Dropped clients for round 44 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 44-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.0870
+Averaged Test Accurancy: 0.1619
+Averaged Test AUC: 0.6853
+Std Test Accurancy: 0.0153
+Std Test AUC: 0.0025
+evaluation for task 1
+Averaged Train Loss: 2.3350
+Averaged Test Accurancy: 0.2219
+Averaged Test AUC: 0.7373
+Std Test Accurancy: 0.0171
+Std Test AUC: 0.0285
+evaluation for task 2
+Averaged Train Loss: 1.2109
+Averaged Test Accurancy: 0.3719
+Averaged Test AUC: 0.8456
+Std Test Accurancy: 0.0343
+Std Test AUC: 0.0208
+Clients: 3
+------------------------- Time cost ------------------------- 739.4075903892517
+Dropped clients for round 45 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 45-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1483
+Averaged Test Accurancy: 0.1558
+Averaged Test AUC: 0.6782
+Std Test Accurancy: 0.0028
+Std Test AUC: 0.0099
+evaluation for task 1
+Averaged Train Loss: 2.3734
+Averaged Test Accurancy: 0.1933
+Averaged Test AUC: 0.7239
+Std Test Accurancy: 0.0111
+Std Test AUC: 0.0073
+evaluation for task 2
+Averaged Train Loss: 0.7477
+Averaged Test Accurancy: 0.3808
+Averaged Test AUC: 0.8497
+Std Test Accurancy: 0.0284
+Std Test AUC: 0.0192
+Clients: 3
+------------------------- Time cost ------------------------- 742.5001158714294
+Dropped clients for round 46 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 46-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1726
+Averaged Test Accurancy: 0.1297
+Averaged Test AUC: 0.6684
+Std Test Accurancy: 0.0226
+Std Test AUC: 0.0199
+evaluation for task 1
+Averaged Train Loss: 2.3804
+Averaged Test Accurancy: 0.2028
+Averaged Test AUC: 0.7192
+Std Test Accurancy: 0.0111
+Std Test AUC: 0.0099
+evaluation for task 2
+Averaged Train Loss: 1.0103
+Averaged Test Accurancy: 0.3758
+Averaged Test AUC: 0.8423
+Std Test Accurancy: 0.0579
+Std Test AUC: 0.0471
+Clients: 3
+------------------------- Time cost ------------------------- 743.8526320457458
+Dropped clients for round 47 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 47-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1008
+Averaged Test Accurancy: 0.1342
+Averaged Test AUC: 0.6679
+Std Test Accurancy: 0.0120
+Std Test AUC: 0.0067
+evaluation for task 1
+Averaged Train Loss: 2.2400
+Averaged Test Accurancy: 0.2047
+Averaged Test AUC: 0.7157
+Std Test Accurancy: 0.0269
+Std Test AUC: 0.0345
+evaluation for task 2
+Averaged Train Loss: 0.7216
+Averaged Test Accurancy: 0.3819
+Averaged Test AUC: 0.8537
+Std Test Accurancy: 0.0009
+Std Test AUC: 0.0100
+Clients: 3
+------------------------- Time cost ------------------------- 745.826089143753
+Dropped clients for round 48 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 48-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1307
+Averaged Test Accurancy: 0.1300
+Averaged Test AUC: 0.6594
+Std Test Accurancy: 0.0287
+Std Test AUC: 0.0227
+evaluation for task 1
+Averaged Train Loss: 2.4079
+Averaged Test Accurancy: 0.1983
+Averaged Test AUC: 0.7137
+Std Test Accurancy: 0.0215
+Std Test AUC: 0.0294
+evaluation for task 2
+Averaged Train Loss: 0.5389
+Averaged Test Accurancy: 0.4042
+Averaged Test AUC: 0.8590
+Std Test Accurancy: 0.0475
+Std Test AUC: 0.0344
+Clients: 3
+------------------------- Time cost ------------------------- 738.8948950767517
+Dropped clients for round 49 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 49-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1154
+Averaged Test Accurancy: 0.1486
+Averaged Test AUC: 0.6728
+Std Test Accurancy: 0.0249
+Std Test AUC: 0.0148
+evaluation for task 1
+Averaged Train Loss: 2.5247
+Averaged Test Accurancy: 0.1922
+Averaged Test AUC: 0.7105
+Std Test Accurancy: 0.0093
+Std Test AUC: 0.0222
+evaluation for task 2
+Averaged Train Loss: 0.4525
+Averaged Test Accurancy: 0.3931
+Averaged Test AUC: 0.8500
+Std Test Accurancy: 0.0628
+Std Test AUC: 0.0421
+Clients: 3
+------------------------- Time cost ------------------------- 737.2193510532379
+Dropped clients for round 50 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 50-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.0863
+Averaged Test Accurancy: 0.1328
+Averaged Test AUC: 0.6550
+Std Test Accurancy: 0.0135
+Std Test AUC: 0.0139
+evaluation for task 1
+Averaged Train Loss: 2.2973
+Averaged Test Accurancy: 0.1956
+Averaged Test AUC: 0.7183
+Std Test Accurancy: 0.0361
+Std Test AUC: 0.0363
+evaluation for task 2
+Averaged Train Loss: 0.2930
+Averaged Test Accurancy: 0.3967
+Averaged Test AUC: 0.8581
+Std Test Accurancy: 0.0321
+Std Test AUC: 0.0169
+Clients: 3
+------------------------- Time cost ------------------------- 739.8741934299469
+Dropped clients for round 51 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 51-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.0818
+Averaged Test Accurancy: 0.1283
+Averaged Test AUC: 0.6697
+Std Test Accurancy: 0.0134
+Std Test AUC: 0.0049
+evaluation for task 1
+Averaged Train Loss: 2.5180
+Averaged Test Accurancy: 0.1786
+Averaged Test AUC: 0.6955
+Std Test Accurancy: 0.0133
+Std Test AUC: 0.0358
+evaluation for task 2
+Averaged Train Loss: 0.3829
+Averaged Test Accurancy: 0.3931
+Averaged Test AUC: 0.8471
+Std Test Accurancy: 0.0183
+Std Test AUC: 0.0106
+Clients: 3
+------------------------- Time cost ------------------------- 743.2881717681885
+Dropped clients for round 52 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 52-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1877
+Averaged Test Accurancy: 0.1328
+Averaged Test AUC: 0.6661
+Std Test Accurancy: 0.0062
+Std Test AUC: 0.0032
+evaluation for task 1
+Averaged Train Loss: 2.2768
+Averaged Test Accurancy: 0.1950
+Averaged Test AUC: 0.7114
+Std Test Accurancy: 0.0151
+Std Test AUC: 0.0140
+evaluation for task 2
+Averaged Train Loss: 0.1679
+Averaged Test Accurancy: 0.4258
+Averaged Test AUC: 0.8718
+Std Test Accurancy: 0.0160
+Std Test AUC: 0.0106
+Clients: 3
+------------------------- Time cost ------------------------- 742.8252904415131
+Dropped clients for round 53 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 53-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1658
+Averaged Test Accurancy: 0.1178
+Averaged Test AUC: 0.6439
+Std Test Accurancy: 0.0278
+Std Test AUC: 0.0176
+evaluation for task 1
+Averaged Train Loss: 2.3548
+Averaged Test Accurancy: 0.1958
+Averaged Test AUC: 0.7249
+Std Test Accurancy: 0.0239
+Std Test AUC: 0.0261
+evaluation for task 2
+Averaged Train Loss: 0.2324
+Averaged Test Accurancy: 0.4042
+Averaged Test AUC: 0.8555
+Std Test Accurancy: 0.0253
+Std Test AUC: 0.0169
+Clients: 3
+------------------------- Time cost ------------------------- 742.2742650508881
+Dropped clients for round 54 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 54-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1498
+Averaged Test Accurancy: 0.1269
+Averaged Test AUC: 0.6563
+Std Test Accurancy: 0.0230
+Std Test AUC: 0.0177
+evaluation for task 1
+Averaged Train Loss: 2.3546
+Averaged Test Accurancy: 0.1775
+Averaged Test AUC: 0.7050
+Std Test Accurancy: 0.0046
+Std Test AUC: 0.0156
+evaluation for task 2
+Averaged Train Loss: 0.1452
+Averaged Test Accurancy: 0.4092
+Averaged Test AUC: 0.8580
+Std Test Accurancy: 0.0203
+Std Test AUC: 0.0142
+Clients: 3
+------------------------- Time cost ------------------------- 740.0674033164978
+Dropped clients for round 55 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 55-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1579
+Averaged Test Accurancy: 0.1358
+Averaged Test AUC: 0.6674
+Std Test Accurancy: 0.0126
+Std Test AUC: 0.0112
+evaluation for task 1
+Averaged Train Loss: 2.3683
+Averaged Test Accurancy: 0.1847
+Averaged Test AUC: 0.6998
+Std Test Accurancy: 0.0106
+Std Test AUC: 0.0237
+evaluation for task 2
+Averaged Train Loss: 0.1173
+Averaged Test Accurancy: 0.4233
+Averaged Test AUC: 0.8590
+Std Test Accurancy: 0.0160
+Std Test AUC: 0.0153
+Clients: 3
+------------------------- Time cost ------------------------- 747.5727868080139
+Dropped clients for round 56 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 56-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1922
+Averaged Test Accurancy: 0.1167
+Averaged Test AUC: 0.6524
+Std Test Accurancy: 0.0157
+Std Test AUC: 0.0094
+evaluation for task 1
+Averaged Train Loss: 2.2421
+Averaged Test Accurancy: 0.1889
+Averaged Test AUC: 0.7090
+Std Test Accurancy: 0.0191
+Std Test AUC: 0.0207
+evaluation for task 2
+Averaged Train Loss: 0.0819
+Averaged Test Accurancy: 0.4253
+Averaged Test AUC: 0.8681
+Std Test Accurancy: 0.0078
+Std Test AUC: 0.0100
+Clients: 3
+------------------------- Time cost ------------------------- 742.0842523574829
+Dropped clients for round 57 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 57-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1398
+Averaged Test Accurancy: 0.1222
+Averaged Test AUC: 0.6448
+Std Test Accurancy: 0.0113
+Std Test AUC: 0.0052
+evaluation for task 1
+Averaged Train Loss: 2.3038
+Averaged Test Accurancy: 0.1800
+Averaged Test AUC: 0.7016
+Std Test Accurancy: 0.0318
+Std Test AUC: 0.0340
+evaluation for task 2
+Averaged Train Loss: 0.1207
+Averaged Test Accurancy: 0.4344
+Averaged Test AUC: 0.8701
+Std Test Accurancy: 0.0110
+Std Test AUC: 0.0023
+Clients: 3
+------------------------- Time cost ------------------------- 739.3583755493164
+Dropped clients for round 58 : []
+Clients: 3
+*********New episodic memory length is 2***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 2***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 58-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.1014
+Averaged Test Accurancy: 0.1311
+Averaged Test AUC: 0.6590
+Std Test Accurancy: 0.0083
+Std Test AUC: 0.0089
+evaluation for task 1
+Averaged Train Loss: 2.2815
+Averaged Test Accurancy: 0.1922
+Averaged Test AUC: 0.7046
+Std Test Accurancy: 0.0188
+Std Test AUC: 0.0252
+evaluation for task 2
+Averaged Train Loss: 0.0552
+Averaged Test Accurancy: 0.4306
+Averaged Test AUC: 0.8677
+Std Test Accurancy: 0.0278
+Std Test AUC: 0.0152
+Clients: 3
+------------------------- Time cost ------------------------- 740.5681159496307
+Dropped clients for round 59 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 59-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.2065
+Averaged Test Accurancy: 0.1250
+Averaged Test AUC: 0.6521
+Std Test Accurancy: 0.0107
+Std Test AUC: 0.0115
+evaluation for task 1
+Averaged Train Loss: 2.4179
+Averaged Test Accurancy: 0.1800
+Averaged Test AUC: 0.6998
+Std Test Accurancy: 0.0211
+Std Test AUC: 0.0288
+evaluation for task 2
+Averaged Train Loss: 0.1112
+Averaged Test Accurancy: 0.4242
+Averaged Test AUC: 0.8637
+Std Test Accurancy: 0.0108
+Std Test AUC: 0.0048
+Clients: 3
+------------------------- Time cost ------------------------- 1019.0717351436615
+Dropped clients for round 60 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 60-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.6086
+Averaged Test Accurancy: 0.0817
+Averaged Test AUC: 0.5830
+Std Test Accurancy: 0.0174
+Std Test AUC: 0.0152
+evaluation for task 1
+Averaged Train Loss: 3.2517
+Averaged Test Accurancy: 0.1636
+Averaged Test AUC: 0.7004
+Std Test Accurancy: 0.0053
+Std Test AUC: 0.0089
+evaluation for task 2
+Averaged Train Loss: 1.0955
+Averaged Test Accurancy: 0.3394
+Averaged Test AUC: 0.8164
+Std Test Accurancy: 0.0283
+Std Test AUC: 0.0142
+evaluation for task 3
+Averaged Train Loss: 1.8393
+Averaged Test Accurancy: 0.3264
+Averaged Test AUC: 0.8475
+Std Test Accurancy: 0.0351
+Std Test AUC: 0.0316
+Clients: 3
+------------------------- Time cost ------------------------- 1037.9592905044556
+Dropped clients for round 61 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 61-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5433
+Averaged Test Accurancy: 0.0908
+Averaged Test AUC: 0.5890
+Std Test Accurancy: 0.0087
+Std Test AUC: 0.0097
+evaluation for task 1
+Averaged Train Loss: 3.2679
+Averaged Test Accurancy: 0.1561
+Averaged Test AUC: 0.6752
+Std Test Accurancy: 0.0119
+Std Test AUC: 0.0079
+evaluation for task 2
+Averaged Train Loss: 1.3717
+Averaged Test Accurancy: 0.3178
+Averaged Test AUC: 0.7972
+Std Test Accurancy: 0.0106
+Std Test AUC: 0.0021
+evaluation for task 3
+Averaged Train Loss: 1.6372
+Averaged Test Accurancy: 0.3661
+Averaged Test AUC: 0.8516
+Std Test Accurancy: 0.0611
+Std Test AUC: 0.0392
+Clients: 3
+------------------------- Time cost ------------------------- 1009.4569284915924
+Dropped clients for round 62 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 62-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4663
+Averaged Test Accurancy: 0.0839
+Averaged Test AUC: 0.5819
+Std Test Accurancy: 0.0134
+Std Test AUC: 0.0186
+evaluation for task 1
+Averaged Train Loss: 3.1419
+Averaged Test Accurancy: 0.1536
+Averaged Test AUC: 0.6668
+Std Test Accurancy: 0.0063
+Std Test AUC: 0.0058
+evaluation for task 2
+Averaged Train Loss: 1.3989
+Averaged Test Accurancy: 0.3033
+Averaged Test AUC: 0.7809
+Std Test Accurancy: 0.0034
+Std Test AUC: 0.0044
+evaluation for task 3
+Averaged Train Loss: 1.2153
+Averaged Test Accurancy: 0.3903
+Averaged Test AUC: 0.8631
+Std Test Accurancy: 0.0494
+Std Test AUC: 0.0276
+Clients: 3
+------------------------- Time cost ------------------------- 1009.1248252391815
+Dropped clients for round 63 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 63-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4893
+Averaged Test Accurancy: 0.0772
+Averaged Test AUC: 0.5832
+Std Test Accurancy: 0.0081
+Std Test AUC: 0.0096
+evaluation for task 1
+Averaged Train Loss: 3.2655
+Averaged Test Accurancy: 0.1475
+Averaged Test AUC: 0.6731
+Std Test Accurancy: 0.0131
+Std Test AUC: 0.0049
+evaluation for task 2
+Averaged Train Loss: 1.5771
+Averaged Test Accurancy: 0.2828
+Averaged Test AUC: 0.7703
+Std Test Accurancy: 0.0066
+Std Test AUC: 0.0020
+evaluation for task 3
+Averaged Train Loss: 0.9454
+Averaged Test Accurancy: 0.3803
+Averaged Test AUC: 0.8583
+Std Test Accurancy: 0.0371
+Std Test AUC: 0.0260
+Clients: 3
+------------------------- Time cost ------------------------- 1012.3261737823486
+Dropped clients for round 64 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 64-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.6308
+Averaged Test Accurancy: 0.0722
+Averaged Test AUC: 0.5542
+Std Test Accurancy: 0.0100
+Std Test AUC: 0.0086
+evaluation for task 1
+Averaged Train Loss: 3.5105
+Averaged Test Accurancy: 0.1583
+Averaged Test AUC: 0.6722
+Std Test Accurancy: 0.0212
+Std Test AUC: 0.0072
+evaluation for task 2
+Averaged Train Loss: 1.9978
+Averaged Test Accurancy: 0.2447
+Averaged Test AUC: 0.7390
+Std Test Accurancy: 0.0104
+Std Test AUC: 0.0064
+evaluation for task 3
+Averaged Train Loss: 0.8665
+Averaged Test Accurancy: 0.3911
+Averaged Test AUC: 0.8540
+Std Test Accurancy: 0.0491
+Std Test AUC: 0.0304
+Clients: 3
+------------------------- Time cost ------------------------- 1037.6476805210114
+Dropped clients for round 65 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 65-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5185
+Averaged Test Accurancy: 0.0831
+Averaged Test AUC: 0.5723
+Std Test Accurancy: 0.0058
+Std Test AUC: 0.0048
+evaluation for task 1
+Averaged Train Loss: 3.3735
+Averaged Test Accurancy: 0.1497
+Averaged Test AUC: 0.6703
+Std Test Accurancy: 0.0123
+Std Test AUC: 0.0178
+evaluation for task 2
+Averaged Train Loss: 1.8193
+Averaged Test Accurancy: 0.2556
+Averaged Test AUC: 0.7512
+Std Test Accurancy: 0.0147
+Std Test AUC: 0.0122
+evaluation for task 3
+Averaged Train Loss: 0.7657
+Averaged Test Accurancy: 0.4000
+Averaged Test AUC: 0.8678
+Std Test Accurancy: 0.0727
+Std Test AUC: 0.0381
+Clients: 3
+------------------------- Time cost ------------------------- 1038.4328050613403
+Dropped clients for round 66 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 66-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5662
+Averaged Test Accurancy: 0.0792
+Averaged Test AUC: 0.5807
+Std Test Accurancy: 0.0058
+Std Test AUC: 0.0056
+evaluation for task 1
+Averaged Train Loss: 3.4186
+Averaged Test Accurancy: 0.1369
+Averaged Test AUC: 0.6557
+Std Test Accurancy: 0.0020
+Std Test AUC: 0.0154
+evaluation for task 2
+Averaged Train Loss: 2.0977
+Averaged Test Accurancy: 0.2378
+Averaged Test AUC: 0.7279
+Std Test Accurancy: 0.0148
+Std Test AUC: 0.0159
+evaluation for task 3
+Averaged Train Loss: 0.7117
+Averaged Test Accurancy: 0.3733
+Averaged Test AUC: 0.8465
+Std Test Accurancy: 0.0328
+Std Test AUC: 0.0208
+Clients: 3
+------------------------- Time cost ------------------------- 1013.1357898712158
+Dropped clients for round 67 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 67-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5765
+Averaged Test Accurancy: 0.0864
+Averaged Test AUC: 0.5868
+Std Test Accurancy: 0.0050
+Std Test AUC: 0.0164
+evaluation for task 1
+Averaged Train Loss: 3.4700
+Averaged Test Accurancy: 0.1597
+Averaged Test AUC: 0.6626
+Std Test Accurancy: 0.0106
+Std Test AUC: 0.0066
+evaluation for task 2
+Averaged Train Loss: 2.0686
+Averaged Test Accurancy: 0.2264
+Averaged Test AUC: 0.7257
+Std Test Accurancy: 0.0162
+Std Test AUC: 0.0072
+evaluation for task 3
+Averaged Train Loss: 0.6938
+Averaged Test Accurancy: 0.3958
+Averaged Test AUC: 0.8560
+Std Test Accurancy: 0.0491
+Std Test AUC: 0.0234
+Clients: 3
+------------------------- Time cost ------------------------- 1017.8093383312225
+Dropped clients for round 68 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 68-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5280
+Averaged Test Accurancy: 0.0897
+Averaged Test AUC: 0.6000
+Std Test Accurancy: 0.0010
+Std Test AUC: 0.0100
+evaluation for task 1
+Averaged Train Loss: 3.2866
+Averaged Test Accurancy: 0.1331
+Averaged Test AUC: 0.6495
+Std Test Accurancy: 0.0199
+Std Test AUC: 0.0241
+evaluation for task 2
+Averaged Train Loss: 2.1542
+Averaged Test Accurancy: 0.2317
+Averaged Test AUC: 0.7291
+Std Test Accurancy: 0.0078
+Std Test AUC: 0.0052
+evaluation for task 3
+Averaged Train Loss: 0.4158
+Averaged Test Accurancy: 0.4303
+Averaged Test AUC: 0.8693
+Std Test Accurancy: 0.0460
+Std Test AUC: 0.0237
+Clients: 3
+------------------------- Time cost ------------------------- 1008.85813164711
+Dropped clients for round 69 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 69-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4969
+Averaged Test Accurancy: 0.0881
+Averaged Test AUC: 0.5832
+Std Test Accurancy: 0.0083
+Std Test AUC: 0.0109
+evaluation for task 1
+Averaged Train Loss: 3.4289
+Averaged Test Accurancy: 0.1489
+Averaged Test AUC: 0.6573
+Std Test Accurancy: 0.0081
+Std Test AUC: 0.0139
+evaluation for task 2
+Averaged Train Loss: 2.1137
+Averaged Test Accurancy: 0.2267
+Averaged Test AUC: 0.7262
+Std Test Accurancy: 0.0029
+Std Test AUC: 0.0176
+evaluation for task 3
+Averaged Train Loss: 0.3655
+Averaged Test Accurancy: 0.4286
+Averaged Test AUC: 0.8703
+Std Test Accurancy: 0.0295
+Std Test AUC: 0.0168
+Clients: 3
+------------------------- Time cost ------------------------- 1011.3490474224091
+Dropped clients for round 70 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 70-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5245
+Averaged Test Accurancy: 0.0850
+Averaged Test AUC: 0.5783
+Std Test Accurancy: 0.0155
+Std Test AUC: 0.0193
+evaluation for task 1
+Averaged Train Loss: 3.3120
+Averaged Test Accurancy: 0.1264
+Averaged Test AUC: 0.6497
+Std Test Accurancy: 0.0062
+Std Test AUC: 0.0061
+evaluation for task 2
+Averaged Train Loss: 2.1489
+Averaged Test Accurancy: 0.2264
+Averaged Test AUC: 0.7274
+Std Test Accurancy: 0.0247
+Std Test AUC: 0.0111
+evaluation for task 3
+Averaged Train Loss: 0.3007
+Averaged Test Accurancy: 0.4125
+Averaged Test AUC: 0.8566
+Std Test Accurancy: 0.0214
+Std Test AUC: 0.0134
+Clients: 3
+------------------------- Time cost ------------------------- 1010.7294316291809
+Dropped clients for round 71 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 71-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5561
+Averaged Test Accurancy: 0.0806
+Averaged Test AUC: 0.5795
+Std Test Accurancy: 0.0126
+Std Test AUC: 0.0112
+evaluation for task 1
+Averaged Train Loss: 3.3353
+Averaged Test Accurancy: 0.1347
+Averaged Test AUC: 0.6542
+Std Test Accurancy: 0.0089
+Std Test AUC: 0.0243
+evaluation for task 2
+Averaged Train Loss: 2.1946
+Averaged Test Accurancy: 0.1972
+Averaged Test AUC: 0.7086
+Std Test Accurancy: 0.0177
+Std Test AUC: 0.0173
+evaluation for task 3
+Averaged Train Loss: 0.3143
+Averaged Test Accurancy: 0.4311
+Averaged Test AUC: 0.8697
+Std Test Accurancy: 0.0464
+Std Test AUC: 0.0216
+Clients: 3
+------------------------- Time cost ------------------------- 1013.1564779281616
+Dropped clients for round 72 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 72-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4757
+Averaged Test Accurancy: 0.0794
+Averaged Test AUC: 0.5725
+Std Test Accurancy: 0.0129
+Std Test AUC: 0.0140
+evaluation for task 1
+Averaged Train Loss: 3.3516
+Averaged Test Accurancy: 0.1436
+Averaged Test AUC: 0.6533
+Std Test Accurancy: 0.0180
+Std Test AUC: 0.0144
+evaluation for task 2
+Averaged Train Loss: 2.0466
+Averaged Test Accurancy: 0.2217
+Averaged Test AUC: 0.7239
+Std Test Accurancy: 0.0213
+Std Test AUC: 0.0061
+evaluation for task 3
+Averaged Train Loss: 0.1667
+Averaged Test Accurancy: 0.4383
+Averaged Test AUC: 0.8714
+Std Test Accurancy: 0.0255
+Std Test AUC: 0.0123
+Clients: 3
+------------------------- Time cost ------------------------- 1029.4175233840942
+Dropped clients for round 73 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 73-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5327
+Averaged Test Accurancy: 0.0922
+Averaged Test AUC: 0.5816
+Std Test Accurancy: 0.0256
+Std Test AUC: 0.0234
+evaluation for task 1
+Averaged Train Loss: 3.4143
+Averaged Test Accurancy: 0.1258
+Averaged Test AUC: 0.6432
+Std Test Accurancy: 0.0273
+Std Test AUC: 0.0225
+evaluation for task 2
+Averaged Train Loss: 2.4599
+Averaged Test Accurancy: 0.2039
+Averaged Test AUC: 0.7084
+Std Test Accurancy: 0.0095
+Std Test AUC: 0.0164
+evaluation for task 3
+Averaged Train Loss: 0.2709
+Averaged Test Accurancy: 0.4244
+Averaged Test AUC: 0.8621
+Std Test Accurancy: 0.0364
+Std Test AUC: 0.0137
+Clients: 3
+------------------------- Time cost ------------------------- 1029.1912789344788
+Dropped clients for round 74 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 74-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4712
+Averaged Test Accurancy: 0.0831
+Averaged Test AUC: 0.5750
+Std Test Accurancy: 0.0154
+Std Test AUC: 0.0180
+evaluation for task 1
+Averaged Train Loss: 3.4267
+Averaged Test Accurancy: 0.1400
+Averaged Test AUC: 0.6500
+Std Test Accurancy: 0.0194
+Std Test AUC: 0.0193
+evaluation for task 2
+Averaged Train Loss: 2.2094
+Averaged Test Accurancy: 0.2278
+Averaged Test AUC: 0.7187
+Std Test Accurancy: 0.0117
+Std Test AUC: 0.0184
+evaluation for task 3
+Averaged Train Loss: 0.1823
+Averaged Test Accurancy: 0.4056
+Averaged Test AUC: 0.8573
+Std Test Accurancy: 0.0363
+Std Test AUC: 0.0180
+Clients: 3
+------------------------- Time cost ------------------------- 1024.4483635425568
+Dropped clients for round 75 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 75-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.6930
+Averaged Test Accurancy: 0.0875
+Averaged Test AUC: 0.5796
+Std Test Accurancy: 0.0181
+Std Test AUC: 0.0113
+evaluation for task 1
+Averaged Train Loss: 3.5509
+Averaged Test Accurancy: 0.1233
+Averaged Test AUC: 0.6322
+Std Test Accurancy: 0.0079
+Std Test AUC: 0.0120
+evaluation for task 2
+Averaged Train Loss: 2.3166
+Averaged Test Accurancy: 0.2000
+Averaged Test AUC: 0.7149
+Std Test Accurancy: 0.0233
+Std Test AUC: 0.0133
+evaluation for task 3
+Averaged Train Loss: 0.2239
+Averaged Test Accurancy: 0.4172
+Averaged Test AUC: 0.8477
+Std Test Accurancy: 0.0418
+Std Test AUC: 0.0272
+Clients: 3
+------------------------- Time cost ------------------------- 1013.0812540054321
+Dropped clients for round 76 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 76-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.4719
+Averaged Test Accurancy: 0.0872
+Averaged Test AUC: 0.5674
+Std Test Accurancy: 0.0130
+Std Test AUC: 0.0244
+evaluation for task 1
+Averaged Train Loss: 3.5288
+Averaged Test Accurancy: 0.1289
+Averaged Test AUC: 0.6372
+Std Test Accurancy: 0.0174
+Std Test AUC: 0.0139
+evaluation for task 2
+Averaged Train Loss: 2.3875
+Averaged Test Accurancy: 0.2042
+Averaged Test AUC: 0.7066
+Std Test Accurancy: 0.0186
+Std Test AUC: 0.0224
+evaluation for task 3
+Averaged Train Loss: 0.1413
+Averaged Test Accurancy: 0.4192
+Averaged Test AUC: 0.8534
+Std Test Accurancy: 0.0361
+Std Test AUC: 0.0183
+Clients: 3
+------------------------- Time cost ------------------------- 1010.6362066268921
+Dropped clients for round 77 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 77-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5218
+Averaged Test Accurancy: 0.0769
+Averaged Test AUC: 0.5735
+Std Test Accurancy: 0.0124
+Std Test AUC: 0.0146
+evaluation for task 1
+Averaged Train Loss: 3.3471
+Averaged Test Accurancy: 0.1217
+Averaged Test AUC: 0.6370
+Std Test Accurancy: 0.0089
+Std Test AUC: 0.0148
+evaluation for task 2
+Averaged Train Loss: 2.1229
+Averaged Test Accurancy: 0.2136
+Averaged Test AUC: 0.7161
+Std Test Accurancy: 0.0036
+Std Test AUC: 0.0051
+evaluation for task 3
+Averaged Train Loss: 0.1209
+Averaged Test Accurancy: 0.4192
+Averaged Test AUC: 0.8609
+Std Test Accurancy: 0.0389
+Std Test AUC: 0.0176
+Clients: 3
+------------------------- Time cost ------------------------- 1012.8119039535522
+Dropped clients for round 78 : []
+Clients: 3
+*********New episodic memory length is 3***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 3***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 78-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.5150
+Averaged Test Accurancy: 0.0786
+Averaged Test AUC: 0.5556
+Std Test Accurancy: 0.0056
+Std Test AUC: 0.0126
+evaluation for task 1
+Averaged Train Loss: 3.5225
+Averaged Test Accurancy: 0.1261
+Averaged Test AUC: 0.6459
+Std Test Accurancy: 0.0066
+Std Test AUC: 0.0093
+evaluation for task 2
+Averaged Train Loss: 2.2076
+Averaged Test Accurancy: 0.1997
+Averaged Test AUC: 0.7062
+Std Test Accurancy: 0.0276
+Std Test AUC: 0.0239
+evaluation for task 3
+Averaged Train Loss: 0.0965
+Averaged Test Accurancy: 0.4050
+Averaged Test AUC: 0.8522
+Std Test Accurancy: 0.0368
+Std Test AUC: 0.0217
+Clients: 3
+------------------------- Time cost ------------------------- 1009.0909690856934
+Dropped clients for round 79 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 79-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.6007
+Averaged Test Accurancy: 0.0819
+Averaged Test AUC: 0.5767
+Std Test Accurancy: 0.0140
+Std Test AUC: 0.0083
+evaluation for task 1
+Averaged Train Loss: 3.5735
+Averaged Test Accurancy: 0.1253
+Averaged Test AUC: 0.6386
+Std Test Accurancy: 0.0187
+Std Test AUC: 0.0192
+evaluation for task 2
+Averaged Train Loss: 2.1871
+Averaged Test Accurancy: 0.2183
+Averaged Test AUC: 0.7188
+Std Test Accurancy: 0.0194
+Std Test AUC: 0.0081
+evaluation for task 3
+Averaged Train Loss: 0.0572
+Averaged Test Accurancy: 0.4233
+Averaged Test AUC: 0.8631
+Std Test Accurancy: 0.0536
+Std Test AUC: 0.0207
+Clients: 3
+------------------------- Time cost ------------------------- 1281.7626194953918
+Dropped clients for round 80 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 80-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.7667
+Averaged Test Accurancy: 0.0775
+Averaged Test AUC: 0.5756
+Std Test Accurancy: 0.0118
+Std Test AUC: 0.0199
+evaluation for task 1
+Averaged Train Loss: 4.1551
+Averaged Test Accurancy: 0.1389
+Averaged Test AUC: 0.6368
+Std Test Accurancy: 0.0590
+Std Test AUC: 0.0174
+evaluation for task 2
+Averaged Train Loss: 3.1478
+Averaged Test Accurancy: 0.1900
+Averaged Test AUC: 0.6796
+Std Test Accurancy: 0.0117
+Std Test AUC: 0.0197
+evaluation for task 3
+Averaged Train Loss: 1.6689
+Averaged Test Accurancy: 0.3297
+Averaged Test AUC: 0.8035
+Std Test Accurancy: 0.0331
+Std Test AUC: 0.0320
+evaluation for task 4
+Averaged Train Loss: 2.0533
+Averaged Test Accurancy: 0.3100
+Averaged Test AUC: 0.8520
+Std Test Accurancy: 0.0369
+Std Test AUC: 0.0284
+Clients: 3
+------------------------- Time cost ------------------------- 1270.9939076900482
+Dropped clients for round 81 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 81-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.7837
+Averaged Test Accurancy: 0.0667
+Averaged Test AUC: 0.5587
+Std Test Accurancy: 0.0095
+Std Test AUC: 0.0395
+evaluation for task 1
+Averaged Train Loss: 3.7367
+Averaged Test Accurancy: 0.1125
+Averaged Test AUC: 0.6312
+Std Test Accurancy: 0.0383
+Std Test AUC: 0.0303
+evaluation for task 2
+Averaged Train Loss: 3.0985
+Averaged Test Accurancy: 0.1481
+Averaged Test AUC: 0.6537
+Std Test Accurancy: 0.0515
+Std Test AUC: 0.0336
+evaluation for task 3
+Averaged Train Loss: 1.7483
+Averaged Test Accurancy: 0.3169
+Averaged Test AUC: 0.7960
+Std Test Accurancy: 0.0168
+Std Test AUC: 0.0147
+evaluation for task 4
+Averaged Train Loss: 1.6978
+Averaged Test Accurancy: 0.3942
+Averaged Test AUC: 0.8760
+Std Test Accurancy: 0.0288
+Std Test AUC: 0.0196
+Clients: 3
+------------------------- Time cost ------------------------- 1272.5925343036652
+Dropped clients for round 82 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 82-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.8414
+Averaged Test Accurancy: 0.0650
+Averaged Test AUC: 0.5797
+Std Test Accurancy: 0.0104
+Std Test AUC: 0.0305
+evaluation for task 1
+Averaged Train Loss: 3.7745
+Averaged Test Accurancy: 0.1142
+Averaged Test AUC: 0.6201
+Std Test Accurancy: 0.0482
+Std Test AUC: 0.0417
+evaluation for task 2
+Averaged Train Loss: 3.1943
+Averaged Test Accurancy: 0.1658
+Averaged Test AUC: 0.6682
+Std Test Accurancy: 0.0426
+Std Test AUC: 0.0385
+evaluation for task 3
+Averaged Train Loss: 1.7001
+Averaged Test Accurancy: 0.3028
+Averaged Test AUC: 0.7767
+Std Test Accurancy: 0.0222
+Std Test AUC: 0.0279
+evaluation for task 4
+Averaged Train Loss: 1.3524
+Averaged Test Accurancy: 0.4019
+Averaged Test AUC: 0.8786
+Std Test Accurancy: 0.0275
+Std Test AUC: 0.0201
+Clients: 3
+------------------------- Time cost ------------------------- 1278.8647649288177
+Dropped clients for round 83 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 83-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.6568
+Averaged Test Accurancy: 0.0692
+Averaged Test AUC: 0.5682
+Std Test Accurancy: 0.0054
+Std Test AUC: 0.0376
+evaluation for task 1
+Averaged Train Loss: 3.8716
+Averaged Test Accurancy: 0.1097
+Averaged Test AUC: 0.6246
+Std Test Accurancy: 0.0246
+Std Test AUC: 0.0264
+evaluation for task 2
+Averaged Train Loss: 3.2087
+Averaged Test Accurancy: 0.1586
+Averaged Test AUC: 0.6530
+Std Test Accurancy: 0.0436
+Std Test AUC: 0.0380
+evaluation for task 3
+Averaged Train Loss: 2.0127
+Averaged Test Accurancy: 0.2842
+Averaged Test AUC: 0.7593
+Std Test Accurancy: 0.0059
+Std Test AUC: 0.0230
+evaluation for task 4
+Averaged Train Loss: 1.2557
+Averaged Test Accurancy: 0.4083
+Averaged Test AUC: 0.8818
+Std Test Accurancy: 0.0424
+Std Test AUC: 0.0213
+Clients: 3
+------------------------- Time cost ------------------------- 1287.5518264770508
+Dropped clients for round 84 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 84-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.8109
+Averaged Test Accurancy: 0.0819
+Averaged Test AUC: 0.5618
+Std Test Accurancy: 0.0136
+Std Test AUC: 0.0349
+evaluation for task 1
+Averaged Train Loss: 3.7372
+Averaged Test Accurancy: 0.1261
+Averaged Test AUC: 0.6176
+Std Test Accurancy: 0.0560
+Std Test AUC: 0.0485
+evaluation for task 2
+Averaged Train Loss: 3.2423
+Averaged Test Accurancy: 0.1503
+Averaged Test AUC: 0.6514
+Std Test Accurancy: 0.0515
+Std Test AUC: 0.0463
+evaluation for task 3
+Averaged Train Loss: 2.1971
+Averaged Test Accurancy: 0.2733
+Averaged Test AUC: 0.7616
+Std Test Accurancy: 0.0027
+Std Test AUC: 0.0223
+evaluation for task 4
+Averaged Train Loss: 0.8826
+Averaged Test Accurancy: 0.4192
+Averaged Test AUC: 0.8800
+Std Test Accurancy: 0.0242
+Std Test AUC: 0.0157
+Clients: 3
+------------------------- Time cost ------------------------- 1287.4792144298553
+Dropped clients for round 85 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 85-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.8741
+Averaged Test Accurancy: 0.0719
+Averaged Test AUC: 0.5678
+Std Test Accurancy: 0.0067
+Std Test AUC: 0.0303
+evaluation for task 1
+Averaged Train Loss: 3.7489
+Averaged Test Accurancy: 0.1161
+Averaged Test AUC: 0.6181
+Std Test Accurancy: 0.0451
+Std Test AUC: 0.0425
+evaluation for task 2
+Averaged Train Loss: 3.5069
+Averaged Test Accurancy: 0.1403
+Averaged Test AUC: 0.6304
+Std Test Accurancy: 0.0490
+Std Test AUC: 0.0439
+evaluation for task 3
+Averaged Train Loss: 2.3816
+Averaged Test Accurancy: 0.2467
+Averaged Test AUC: 0.7382
+Std Test Accurancy: 0.0242
+Std Test AUC: 0.0260
+evaluation for task 4
+Averaged Train Loss: 1.0379
+Averaged Test Accurancy: 0.4011
+Averaged Test AUC: 0.8629
+Std Test Accurancy: 0.0710
+Std Test AUC: 0.0369
+Clients: 3
+------------------------- Time cost ------------------------- 1289.0008635520935
+Dropped clients for round 86 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 86-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.9333
+Averaged Test Accurancy: 0.0744
+Averaged Test AUC: 0.5769
+Std Test Accurancy: 0.0153
+Std Test AUC: 0.0324
+evaluation for task 1
+Averaged Train Loss: 3.8095
+Averaged Test Accurancy: 0.1133
+Averaged Test AUC: 0.6110
+Std Test Accurancy: 0.0385
+Std Test AUC: 0.0361
+evaluation for task 2
+Averaged Train Loss: 3.4145
+Averaged Test Accurancy: 0.1319
+Averaged Test AUC: 0.6315
+Std Test Accurancy: 0.0561
+Std Test AUC: 0.0378
+evaluation for task 3
+Averaged Train Loss: 2.2128
+Averaged Test Accurancy: 0.2861
+Averaged Test AUC: 0.7705
+Std Test Accurancy: 0.0098
+Std Test AUC: 0.0170
+evaluation for task 4
+Averaged Train Loss: 0.6221
+Averaged Test Accurancy: 0.4092
+Averaged Test AUC: 0.8697
+Std Test Accurancy: 0.0551
+Std Test AUC: 0.0248
+Clients: 3
+------------------------- Time cost ------------------------- 1291.7318160533905
+Dropped clients for round 87 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 87-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.9306
+Averaged Test Accurancy: 0.0867
+Averaged Test AUC: 0.5704
+Std Test Accurancy: 0.0131
+Std Test AUC: 0.0316
+evaluation for task 1
+Averaged Train Loss: 3.8136
+Averaged Test Accurancy: 0.1267
+Averaged Test AUC: 0.6186
+Std Test Accurancy: 0.0518
+Std Test AUC: 0.0371
+evaluation for task 2
+Averaged Train Loss: 3.4327
+Averaged Test Accurancy: 0.1428
+Averaged Test AUC: 0.6435
+Std Test Accurancy: 0.0403
+Std Test AUC: 0.0333
+evaluation for task 3
+Averaged Train Loss: 2.3168
+Averaged Test Accurancy: 0.2694
+Averaged Test AUC: 0.7553
+Std Test Accurancy: 0.0034
+Std Test AUC: 0.0140
+evaluation for task 4
+Averaged Train Loss: 0.7015
+Averaged Test Accurancy: 0.4264
+Averaged Test AUC: 0.8749
+Std Test Accurancy: 0.0419
+Std Test AUC: 0.0273
+Clients: 3
+------------------------- Time cost ------------------------- 1289.1694757938385
+Dropped clients for round 88 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 88-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.9292
+Averaged Test Accurancy: 0.0811
+Averaged Test AUC: 0.5703
+Std Test Accurancy: 0.0092
+Std Test AUC: 0.0296
+evaluation for task 1
+Averaged Train Loss: 3.9933
+Averaged Test Accurancy: 0.1158
+Averaged Test AUC: 0.6095
+Std Test Accurancy: 0.0345
+Std Test AUC: 0.0377
+evaluation for task 2
+Averaged Train Loss: 3.3813
+Averaged Test Accurancy: 0.1436
+Averaged Test AUC: 0.6324
+Std Test Accurancy: 0.0435
+Std Test AUC: 0.0466
+evaluation for task 3
+Averaged Train Loss: 2.3046
+Averaged Test Accurancy: 0.2675
+Averaged Test AUC: 0.7488
+Std Test Accurancy: 0.0028
+Std Test AUC: 0.0183
+evaluation for task 4
+Averaged Train Loss: 0.5227
+Averaged Test Accurancy: 0.4092
+Averaged Test AUC: 0.8647
+Std Test Accurancy: 0.0436
+Std Test AUC: 0.0265
+Clients: 3
+------------------------- Time cost ------------------------- 1278.9862740039825
+Dropped clients for round 89 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 89-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 4.0226
+Averaged Test Accurancy: 0.0878
+Averaged Test AUC: 0.5643
+Std Test Accurancy: 0.0063
+Std Test AUC: 0.0449
+evaluation for task 1
+Averaged Train Loss: 3.9839
+Averaged Test Accurancy: 0.1333
+Averaged Test AUC: 0.6255
+Std Test Accurancy: 0.0396
+Std Test AUC: 0.0352
+evaluation for task 2
+Averaged Train Loss: 3.6943
+Averaged Test Accurancy: 0.1450
+Averaged Test AUC: 0.6424
+Std Test Accurancy: 0.0466
+Std Test AUC: 0.0415
+evaluation for task 3
+Averaged Train Loss: 2.2872
+Averaged Test Accurancy: 0.2439
+Averaged Test AUC: 0.7310
+Std Test Accurancy: 0.0279
+Std Test AUC: 0.0252
+evaluation for task 4
+Averaged Train Loss: 0.4322
+Averaged Test Accurancy: 0.4067
+Averaged Test AUC: 0.8602
+Std Test Accurancy: 0.0492
+Std Test AUC: 0.0353
+Clients: 3
+------------------------- Time cost ------------------------- 1282.711237192154
+Dropped clients for round 90 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 90-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.9160
+Averaged Test Accurancy: 0.0828
+Averaged Test AUC: 0.5731
+Std Test Accurancy: 0.0098
+Std Test AUC: 0.0355
+evaluation for task 1
+Averaged Train Loss: 3.8440
+Averaged Test Accurancy: 0.1267
+Averaged Test AUC: 0.6160
+Std Test Accurancy: 0.0305
+Std Test AUC: 0.0457
+evaluation for task 2
+Averaged Train Loss: 3.3892
+Averaged Test Accurancy: 0.1506
+Averaged Test AUC: 0.6535
+Std Test Accurancy: 0.0308
+Std Test AUC: 0.0260
+evaluation for task 3
+Averaged Train Loss: 2.1761
+Averaged Test Accurancy: 0.2619
+Averaged Test AUC: 0.7453
+Std Test Accurancy: 0.0036
+Std Test AUC: 0.0112
+evaluation for task 4
+Averaged Train Loss: 0.3157
+Averaged Test Accurancy: 0.4308
+Averaged Test AUC: 0.8715
+Std Test Accurancy: 0.0434
+Std Test AUC: 0.0269
+Clients: 3
+------------------------- Time cost ------------------------- 1284.999930381775
+Dropped clients for round 91 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 91-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.8406
+Averaged Test Accurancy: 0.0742
+Averaged Test AUC: 0.5603
+Std Test Accurancy: 0.0083
+Std Test AUC: 0.0345
+evaluation for task 1
+Averaged Train Loss: 3.9815
+Averaged Test Accurancy: 0.1192
+Averaged Test AUC: 0.6206
+Std Test Accurancy: 0.0319
+Std Test AUC: 0.0342
+evaluation for task 2
+Averaged Train Loss: 3.5045
+Averaged Test Accurancy: 0.1411
+Averaged Test AUC: 0.6338
+Std Test Accurancy: 0.0258
+Std Test AUC: 0.0341
+evaluation for task 3
+Averaged Train Loss: 2.3430
+Averaged Test Accurancy: 0.2458
+Averaged Test AUC: 0.7316
+Std Test Accurancy: 0.0253
+Std Test AUC: 0.0277
+evaluation for task 4
+Averaged Train Loss: 0.3945
+Averaged Test Accurancy: 0.4131
+Averaged Test AUC: 0.8628
+Std Test Accurancy: 0.0422
+Std Test AUC: 0.0262
+Clients: 3
+------------------------- Time cost ------------------------- 1287.5577614307404
+Dropped clients for round 92 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 92-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 4.0909
+Averaged Test Accurancy: 0.0797
+Averaged Test AUC: 0.5629
+Std Test Accurancy: 0.0138
+Std Test AUC: 0.0397
+evaluation for task 1
+Averaged Train Loss: 3.9258
+Averaged Test Accurancy: 0.1231
+Averaged Test AUC: 0.6162
+Std Test Accurancy: 0.0383
+Std Test AUC: 0.0422
+evaluation for task 2
+Averaged Train Loss: 3.4708
+Averaged Test Accurancy: 0.1403
+Averaged Test AUC: 0.6344
+Std Test Accurancy: 0.0211
+Std Test AUC: 0.0418
+evaluation for task 3
+Averaged Train Loss: 2.3174
+Averaged Test Accurancy: 0.2511
+Averaged Test AUC: 0.7348
+Std Test Accurancy: 0.0067
+Std Test AUC: 0.0072
+evaluation for task 4
+Averaged Train Loss: 0.4010
+Averaged Test Accurancy: 0.4186
+Averaged Test AUC: 0.8631
+Std Test Accurancy: 0.0491
+Std Test AUC: 0.0318
+Clients: 3
+------------------------- Time cost ------------------------- 1288.5169944763184
+Dropped clients for round 93 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 93-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.9010
+Averaged Test Accurancy: 0.0839
+Averaged Test AUC: 0.5621
+Std Test Accurancy: 0.0110
+Std Test AUC: 0.0270
+evaluation for task 1
+Averaged Train Loss: 3.9881
+Averaged Test Accurancy: 0.1208
+Averaged Test AUC: 0.6096
+Std Test Accurancy: 0.0284
+Std Test AUC: 0.0341
+evaluation for task 2
+Averaged Train Loss: 3.4872
+Averaged Test Accurancy: 0.1500
+Averaged Test AUC: 0.6378
+Std Test Accurancy: 0.0424
+Std Test AUC: 0.0328
+evaluation for task 3
+Averaged Train Loss: 2.4882
+Averaged Test Accurancy: 0.2514
+Averaged Test AUC: 0.7342
+Std Test Accurancy: 0.0049
+Std Test AUC: 0.0168
+evaluation for task 4
+Averaged Train Loss: 0.4599
+Averaged Test Accurancy: 0.3831
+Averaged Test AUC: 0.8457
+Std Test Accurancy: 0.0663
+Std Test AUC: 0.0441
+Clients: 3
+------------------------- Time cost ------------------------- 1290.7107684612274
+Dropped clients for round 94 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
+************************* length of uploaded models ************************* 3
+
+-------------Round number: 94-------------
+
+Evaluate global model
+evaluation for task 0
+Averaged Train Loss: 3.8437
+Averaged Test Accurancy: 0.0897
+Averaged Test AUC: 0.5765
+Std Test Accurancy: 0.0081
+Std Test AUC: 0.0326
+evaluation for task 1
+Averaged Train Loss: 3.8320
+Averaged Test Accurancy: 0.1200
+Averaged Test AUC: 0.6086
+Std Test Accurancy: 0.0268
+Std Test AUC: 0.0392
+evaluation for task 2
+Averaged Train Loss: 3.3816
+Averaged Test Accurancy: 0.1433
+Averaged Test AUC: 0.6310
+Std Test Accurancy: 0.0364
+Std Test AUC: 0.0297
+evaluation for task 3
+Averaged Train Loss: 2.2872
+Averaged Test Accurancy: 0.2539
+Averaged Test AUC: 0.7433
+Std Test Accurancy: 0.0167
+Std Test AUC: 0.0095
+evaluation for task 4
+Averaged Train Loss: 0.2454
+Averaged Test Accurancy: 0.4100
+Averaged Test AUC: 0.8562
+Std Test Accurancy: 0.0561
+Std Test AUC: 0.0338
+Clients: 3
+------------------------- Time cost ------------------------- 1303.8331780433655
+Dropped clients for round 95 : []
+Clients: 3
+*********New episodic memory length is 4***********
+file path episodic_memory_client_0.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_1.npz
+*********New episodic memory length is 4***********
+file path episodic_memory_client_2.npz
